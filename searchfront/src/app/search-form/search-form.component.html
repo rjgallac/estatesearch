@@ -1,0 +1,9 @@
+<p>search-form works!</p>
+
+<div>
+    <form (ngSubmit)="onSubmit()">
+    <label for="name">Search: </label>
+    <input id="name" [(ngModel)]="search.name" placeholder="name" [ngModelOptions]="{standalone: true}">
+    <button type="submit" class="btn btn-success" >Submit</button>
+`   </form>
+</div>

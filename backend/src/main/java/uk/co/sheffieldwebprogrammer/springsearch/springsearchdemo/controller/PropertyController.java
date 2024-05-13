@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.model.Property;
 import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.repository.PropertyRepository;
 
@@ -62,5 +60,13 @@ public class PropertyController {
         return propertyRepository.findByDescriptionContaining("JAVA", pageable).getContent();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("searchquery")
+    @GetMapping
+    public List<Property> getProps(@RequestParam String query) {
+//        Sort sortBy = Sort.by(Sort.Order.asc("description"));
+        Pageable pageable = PageRequest.of(0,10);
+        return propertyRepository.findByDescriptionContaining(query, pageable).getContent();
+    }
 
 }
