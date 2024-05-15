@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 @Component({
@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 })
 export class SearchFormComponent {
 
+  @Output('propertySearch')
+  propertySearch: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(){}
 
   search = {
@@ -18,7 +21,8 @@ export class SearchFormComponent {
   }
 
   onSubmit() { 
-    console.log("HERE");     
+    console.log("HERE");
+    this.propertySearch.emit(this.search.name) 
   }
 
 }

@@ -5,6 +5,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { PropertyService } from './property.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Property } from './model/Property'
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   title = 'searchfront';
+  search = {
+    "name": "beach"
+  }
+  results: Property[] = new Array();
+
+  name = "";
+
+  constructor(
+    private propertyService: PropertyService){
+
+    }
+
+  propertySearch(name: string) {
+    console.log("hi" + name)
+    this.propertyService.getProperties(name).subscribe( (properties: Property[]) => {
+      console.log(properties)
+      this.results = properties
+  })
+    console.log(this.results)
+  }
 }

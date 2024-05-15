@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PropertyService } from '../property.service';
 import { Property } from '../model/Property'
 import { Observable } from 'rxjs';
@@ -15,12 +15,14 @@ import { PropertyResultComponent } from '../property-result/property-result.comp
 })
 export class SearchResultsComponent {
 
-  results: Property[] = new Array();
+
+  @Input() results: Property[] = new Array();
+
+
 
 
   constructor(
     private propertyService: PropertyService){
-      this.propertyService.getProperties("beach").subscribe( properties => this.results = properties)
 
     }
 }
