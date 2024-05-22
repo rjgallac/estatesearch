@@ -20,3 +20,8 @@ http://localhost:8080/property
 
 run this to query all those cvs that contain JAVA keyword
 http://localhost:8080/property/all
+
+
+## docker instructions
+docker build -t rjgallac/searchapp .
+docker run -p8080:8080 --network host rjgallac/searchapp
