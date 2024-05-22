@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SearchFormComponent } from './search-form/search-form.component'
 import { SearchResultsComponent } from './search-results/search-results.component'
+import { DetailViewComponent } from './detail-view/detail-view.component'
 import { PropertyService } from './property.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,7 @@ import { Property } from './model/Property'
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SearchFormComponent, HttpClientModule, SearchResultsComponent, CommonModule],
+  imports: [RouterOutlet, SearchFormComponent, HttpClientModule, SearchResultsComponent, CommonModule, DetailViewComponent],
   providers: [PropertyService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
