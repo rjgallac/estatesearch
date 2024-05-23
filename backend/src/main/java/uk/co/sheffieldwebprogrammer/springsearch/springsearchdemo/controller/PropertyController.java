@@ -60,7 +60,7 @@ public class PropertyController {
         return propertyRepository.findByDescriptionContaining("JAVA", pageable).getContent();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin
     @RequestMapping("searchquery")
     @GetMapping
     public List<Property> getProps(@RequestParam String query) {
