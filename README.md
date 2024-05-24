@@ -18,3 +18,8 @@ Customer facing site
 
 - nginx
 - Angular
+
+TODO
+- add router to angular
+- add material to angular
+- add system design diagram 

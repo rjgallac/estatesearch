@@ -63,7 +63,7 @@ public class PropertyController {
     @CrossOrigin
     @RequestMapping("searchquery")
     @GetMapping
-    public List<Property> getProps(@RequestParam String query) {
+    public List<Property> getProps(@RequestParam("query") String query) {
 //        Sort sortBy = Sort.by(Sort.Order.asc("description"));
         Pageable pageable = PageRequest.of(0,10);
         return propertyRepository.findByDescriptionContaining(query, pageable).getContent();
