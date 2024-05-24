@@ -1,0 +1,3 @@
+rootProject.name = 'estatesearch'
+include 'backend'
+include 'estateinfobackend'
