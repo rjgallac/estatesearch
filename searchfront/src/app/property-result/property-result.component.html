@@ -1,10 +1,20 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar style="background-image: url('{{randomimg()}}');" class="example-header-image"></div>
+        <mat-card-title><a [routerLink]="'/detail-view'">{{property.address}}</a></mat-card-title>
+        <mat-card-subtitle>£ {{property.price}}</mat-card-subtitle>
+    </mat-card-header>
 
-<mat-card>
+    <img mat-card-image src="{{'http://localhost:81/home' + randomIntFromInterval(1,6) + '.jpg'}}" alt="Home">
+
     <mat-card-content>
-<h2><a [routerLink]="'/detail-view'">property-result works!</a></h2>
-
-address: {{property.address}} <br />
-price: {{property.price}}
-</mat-card-content>
+        <p>
+        address: {{property.address}} <br />
+        price: {{property.price}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button  color="primary">LIKE</button>
+        <button mat-raised-button color="accent">SHARE</button>
+    </mat-card-actions>
 </mat-card>
-<br />

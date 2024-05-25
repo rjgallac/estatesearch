@@ -29,3 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### docker instructions
 docker build -t rjgallac/estatesearchfront .
 docker run -p 80:80  --network host rjgallac/estatesearchfront
+
+
+docker run --name docker-nginx -v ~/docker-nginx/html:/usr/share/nginx/html nginx -p81:80 nginx
