@@ -1,10 +1,11 @@
 <app-search-form (propertySearch)="propertySearch($event, 0)"></app-search-form>
 <!-- <app-map></app-map> -->
 <br />&nbsp;<br />  
-<!-- Total: {{(results | async)?.totalResults}} -->
+Total: {{totalResults}}
 <app-search-results class="item" [results]="results.properties"></app-search-results>
 
-<!-- <mat-paginator [length]="(results|async)?.totalResults"
-              (page)="getServerData($event)"
-              aria-label="Select page">
-</mat-paginator> -->
+<mat-paginator [length]="totalResults"
+               [pageSize]="10"
+               (page)="getServerData($event)"
+                aria-label="Select page">
+</mat-paginator>

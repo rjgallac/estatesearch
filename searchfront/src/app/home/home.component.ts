@@ -23,22 +23,21 @@ export class HomeComponent {
 
   searchString: string = "";
 
+  totalResults: number = 0;
+
   constructor( private propertyService: PropertyService){}
 
 
   propertySearch(searchString: string, pageNo: number) {
     this.searchString = searchString;
     this.propertyService.getProperties(searchString, pageNo).subscribe( (propertyResults: PropertyResults) => {
-      console.log("here" + this.searchString  )
+      this.totalResults = propertyResults.totalResults;
       this.results = propertyResults;
     })
   }
 
   getServerData(event:PageEvent) {
-
-    console.log(event?.pageIndex)
-    // console.log(this.searchString)
-    // this.propertySearch(this.searchString, event?.pageIndex);
+    this.propertySearch(this.searchString, event?.pageIndex);
   }
 
 }
