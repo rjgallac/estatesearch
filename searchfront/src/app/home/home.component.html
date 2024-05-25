@@ -1,11 +1,16 @@
 <app-search-form (propertySearch)="propertySearch($event, 0)"></app-search-form>
 <!-- <app-map></app-map> -->
 <br />&nbsp;<br />  
-Total: {{totalResults}}
+<ng-container *ngIf="totalResults != 0">
+
+    <strong>Total: {{totalResults}}</strong>
+</ng-container>
 <app-search-results class="item" [results]="results.properties"></app-search-results>
 
-<mat-paginator [length]="totalResults"
-               [pageSize]="10"
-               (page)="getServerData($event)"
-                aria-label="Select page">
+<ng-container *ngIf="totalResults != 0">
+    <mat-paginator [length]="totalResults"
+    [pageSize]="10"
+    (page)="getServerData($event)"
+     aria-label="Select page">
 </mat-paginator>
+</ng-container>
