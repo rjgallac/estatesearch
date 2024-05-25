@@ -1,12 +1,13 @@
-<div style="border:1px solid red;    padding: 10px;
-">
+<div >
     <form (ngSubmit)="onSubmit()">
-    <label for="name">Search: </label>
-    <input id="name" [(ngModel)]="search.name" placeholder="name" [ngModelOptions]="{standalone: true}">
+        <mat-form-field>
+            <label for="name">Search: </label>
+            <input matInput id="name" [(ngModel)]="search.name" placeholder="name" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
     Price:<select>
         <option>100,000</option>
     </select>
     beds: <select><option>1</option><option>2</option></select>
-    <button type="submit" class="btn btn-success" >Submit</button>
-`   </form>
+    <button mat-button type="submit"  color="primary"  >Submit</button>
+   </form>
 </div>
