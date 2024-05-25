@@ -5,6 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card'
+import { SearchForm } from '../model/SearchForm';
 
 
 @Component({
@@ -18,20 +19,14 @@ import {MatCardModule} from '@angular/material/card'
 export class SearchFormComponent {
 
   @Output('propertySearch')
-  propertySearch: EventEmitter<string> = new EventEmitter<string>();
+  propertySearch: EventEmitter<SearchForm> = new EventEmitter<SearchForm>();
 
   constructor(){}
 
-  search = {
-    "name" : "",
-    "minPrice" : "100,000",
-    "maxPrice" : "500,000",
-    "beds" : "1"
-  }
+  searchForm: SearchForm = new SearchForm();
 
   onSubmit() { 
-    console.log("HERE");
-    this.propertySearch.emit(this.search.name) 
+    this.propertySearch.emit(this.searchForm) 
   }
 
 }

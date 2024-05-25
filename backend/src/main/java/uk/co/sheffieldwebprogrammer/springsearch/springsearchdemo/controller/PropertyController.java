@@ -25,7 +25,9 @@ public class PropertyController {
     public void get(){
         String addresses[] = new String[]{"Johns Street", "James Road", "Windsor Drive", "St Marys Gate", "Dunree Gdns"};
         String images[] = new String[]{"home1", "home2", "home3", "home4", "home5"};
-        long salaries[] = new long[]{20000l, 10000l};
+        long salaries[] = new long[]{200000l, 100000l, 300000l, 400000l, 500000l, 600000l};
+        int beds[] = new int[]{1, 2, 3};
+
         String descriptions[] = new String[]{
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed Granny nisi auctor, placerat diam ac, consectetur mi. Fusce aliquet id est id fringilla. Pellentesque commodo laoreet odio, nec malesuada libero. Pellentesque eget lacinia massa. Pellentesque scelerisque rutrum orci, vel ornare ligula gravida quis. Integer sapien augue, pulvinar nec tortor id, elementum euismod nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque vitae lorem efficitur, dignissim lectus vitae, egestas sapien. Integer finibus pulvinar urna, vitae congue lacus. Integer efficitur pretium justo, nec fringilla lorem elementum vitae. Cras pulvinar massa ut enim ultrices laoreet. Duis sed dolor pharetra, bibendum turpis eu, euismod nisi.",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed Swimming nisi auctor, placerat diam ac, consectetur mi. Fusce aliquet id est id fringilla. Pellentesque commodo laoreet odio, nec malesuada libero. Pellentesque eget lacinia massa. Pellentesque scelerisque rutrum orci, vel ornare ligula gravida quis. Integer sapien augue, pulvinar nec tortor id, elementum euismod nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque vitae lorem efficitur, dignissim lectus vitae, egestas sapien. Integer finibus pulvinar urna, vitae congue lacus. Integer efficitur pretium justo, nec fringilla lorem elementum vitae. Cras pulvinar massa ut enim ultrices laoreet. Duis sed dolor pharetra, bibendum turpis eu, euismod nisi.",
@@ -37,6 +39,7 @@ public class PropertyController {
             property.setPrice(salaries[ThreadLocalRandom.current().nextInt(0, salaries.length)]);
             property.setDescription(descriptions[ThreadLocalRandom.current().nextInt(0, descriptions.length)]);
             property.setImage(images[ThreadLocalRandom.current().nextInt(0, images.length)]);
+            property.setBedrooms(beds[ThreadLocalRandom.current().nextInt(0, beds.length)]);
             Property savedProperty = propertyRepository.save(property);
 
         }
@@ -68,11 +71,12 @@ public class PropertyController {
     @CrossOrigin
     @RequestMapping("searchquery")
     @GetMapping
-    public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo) {
+    public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo, @RequestParam(value = "minPrice", required = false) long minPrice) {
 //        Sort sortBy = Sort.by(Sort.Order.asc("description"));
         Pageable pageable = PageRequest.of(pageNo,10);
         PropertyResults propertyResults = new PropertyResults();
-        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContaining(query, pageable);
+//        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContaining(query, pageable);
+        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContainingAndPriceGreaterThan(query, minPrice, pageable);
         List<Property> properties = propertyRepositoryByDescriptionContaining.getContent();
         propertyResults.setProperties(properties);
         propertyResults.setTotalResults(propertyRepositoryByDescriptionContaining.getTotalElements());

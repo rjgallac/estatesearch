@@ -14,6 +14,9 @@ public interface PropertyRepository extends ElasticsearchRepository<Property, St
 
     Page<Property> findByDescriptionContaining(String description, Pageable pageable);
 
+    Page<Property> findByDescriptionContainingAndPriceGreaterThan(String description, Long price, Pageable pageable);
+
+
     List<Property> findByDescriptionContaining(String name);
 
     @Query("{\"match\": {\"price\": {\"query\": \"?0\"}}}")

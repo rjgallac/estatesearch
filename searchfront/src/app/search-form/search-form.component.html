@@ -3,37 +3,37 @@
             <form (ngSubmit)="onSubmit()" class="container">
                 <mat-form-field class="form-element">
                     <label for="name">Search: </label>
-                    <input matInput id="name" [(ngModel)]="search.name" placeholder="name" [ngModelOptions]="{standalone: true}">
+                    <input matInput id="name" [(ngModel)]="searchForm.name" placeholder="name" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label>Min Price</mat-label>
-                    <mat-select [(ngModel)]="search.minPrice"  [ngModelOptions]="{standalone: true}">
-                        <mat-option value="100,000">100,000</mat-option>
-                        <mat-option value="200,000">200,000</mat-option>
-                        <mat-option value="300,000">300,000</mat-option>
-                        <mat-option value="400,000">400,000</mat-option>
-                        <mat-option value="500,000">500,000</mat-option>
-                        <mat-option value="600,000">600,000</mat-option>
+                    <mat-select [(ngModel)]="searchForm.minPrice"  [ngModelOptions]="{standalone: true}">
+                        <mat-option value="100000">100,000</mat-option>
+                        <mat-option value="200000">200,000</mat-option>
+                        <mat-option value="300000">300,000</mat-option>
+                        <mat-option value="400000">400,000</mat-option>
+                        <mat-option value="500000">500,000</mat-option>
+                        <mat-option value="600000">600,000</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label>Max Price</mat-label>
-                    <mat-select [(ngModel)]="search.maxPrice"  [ngModelOptions]="{standalone: true}">
-                        <mat-option value="100,000">100,000</mat-option>
-                        <mat-option value="200,000">200,000</mat-option>
-                        <mat-option value="300,000">300,000</mat-option>
-                        <mat-option value="400,000">400,000</mat-option>
-                        <mat-option value="500,000">500,000</mat-option>
-                        <mat-option value="600,000">600,000</mat-option>
+                    <mat-select [(ngModel)]="searchForm.maxPrice"  [ngModelOptions]="{standalone: true}">
+                        <mat-option value="100000">100,000</mat-option>
+                        <mat-option value="200000">200,000</mat-option>
+                        <mat-option value="300000">300,000</mat-option>
+                        <mat-option value="400000">400,000</mat-option>
+                        <mat-option value="500000">500,000</mat-option>
+                        <mat-option value="600000">600,000</mat-option>
 
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label>Beds</mat-label>
-                    <mat-select [(ngModel)]="search.beds"  [ngModelOptions]="{standalone: true}">
+                    <mat-select [(ngModel)]="searchForm.beds"  [ngModelOptions]="{standalone: true}">
                         <mat-option value="1">1</mat-option>
                         <mat-option value="2">2</mat-option>
                     </mat-select>

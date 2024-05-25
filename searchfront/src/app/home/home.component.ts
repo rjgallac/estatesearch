@@ -7,6 +7,7 @@ import { PropertyResults } from '../model/PropertyResults';
 import { MapComponent } from '../map/map.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
+import { SearchForm } from '../model/SearchForm';
 
 @Component({
   selector: 'app-home',
@@ -21,23 +22,25 @@ export class HomeComponent {
   
   results: PropertyResults = new PropertyResults();
 
-  searchString: string = "";
+  searchForm: SearchForm = new SearchForm();
 
   totalResults: number = 0;
+
+  minPrice: number = 0;
 
   constructor( private propertyService: PropertyService){}
 
 
-  propertySearch(searchString: string, pageNo: number) {
-    this.searchString = searchString;
-    this.propertyService.getProperties(searchString, pageNo).subscribe( (propertyResults: PropertyResults) => {
+  propertySearch(searchForm: SearchForm,  pageNo: number) {
+    this.searchForm = searchForm;
+    this.propertyService.getProperties(searchForm, pageNo).subscribe( (propertyResults: PropertyResults) => {
       this.totalResults = propertyResults.totalResults;
       this.results = propertyResults;
     })
   }
 
   getServerData(event:PageEvent) {
-    this.propertySearch(this.searchString, event?.pageIndex);
+    this.propertySearch(this.searchForm, event?.pageIndex);
   }
 
 }
