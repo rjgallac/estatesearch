@@ -1,13 +1,13 @@
 <mat-nav-list>
-    <mat-list-item>
+    <mat-list-item (click)="closeSidenav()" routerLink="/" routerLinkActive="active-link">
       <mat-icon matListIcon>home</mat-icon>
       <span matLine>Home</span>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item (click)="closeSidenav()" routerLink="/about" routerLinkActive="active-link">
       <mat-icon matListIcon>info</mat-icon>
       <span matLine>About</span>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item (click)="closeSidenav()" routerLink="/contact" routerLinkActive="active-link">
       <mat-icon matListIcon>contact_mail</mat-icon>
       <span matLine>Contact</span>
     </mat-list-item>
