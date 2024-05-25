@@ -1,15 +1,10 @@
 import { Routes } from '@angular/router';
-
-import { SearchViewComponent } from './search-view/search-view.component'
-import { DetailViewComponent } from './detail-view/detail-view.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: SearchViewComponent
-    },
-    {
-        path: 'detail-view',
-        component: DetailViewComponent
-    }
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent }
 ];

@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSidenav } from '@angular/material/sidenav';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-layout',
   standalone: true,
   imports: [
     CommonModule,
@@ -19,11 +20,11 @@ import { LayoutComponent } from './layout/layout.component';
     MatIconModule,
     MatButtonModule,
     RouterModule,
-    LayoutComponent
+    SidenavComponent
   ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.css']
 })
-export class AppComponent {
-  title = 'my-angular-material-app';
+export class LayoutComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 }
