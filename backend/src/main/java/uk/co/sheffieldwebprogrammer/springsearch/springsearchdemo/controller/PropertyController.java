@@ -71,12 +71,14 @@ public class PropertyController {
     @CrossOrigin
     @RequestMapping("searchquery")
     @GetMapping
-    public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo, @RequestParam(value = "minPrice", required = false) long minPrice) {
+    public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo,
+                                                    @RequestParam(value = "minPrice", required = false) long minPrice,
+                                                    @RequestParam(value = "bedrooms", required = false) int bedrooms) {
 //        Sort sortBy = Sort.by(Sort.Order.asc("description"));
         Pageable pageable = PageRequest.of(pageNo,10);
         PropertyResults propertyResults = new PropertyResults();
 //        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContaining(query, pageable);
-        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContainingAndPriceGreaterThan(query, minPrice, pageable);
+        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContainingAndPriceGreaterThanAndBedrooms(query, minPrice, bedrooms, pageable);
         List<Property> properties = propertyRepositoryByDescriptionContaining.getContent();
         propertyResults.setProperties(properties);
         propertyResults.setTotalResults(propertyRepositoryByDescriptionContaining.getTotalElements());
