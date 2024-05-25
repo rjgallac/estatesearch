@@ -7,22 +7,42 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>Price</mat-label>
-                    <mat-select>
-                        <mat-option>100,000</mat-option>
+                    <mat-label>Min Price</mat-label>
+                    <mat-select [(ngModel)]="search.minPrice"  [ngModelOptions]="{standalone: true}">
+                        <mat-option value="100,000">100,000</mat-option>
+                        <mat-option value="200,000">200,000</mat-option>
+                        <mat-option value="300,000">300,000</mat-option>
+                        <mat-option value="400,000">400,000</mat-option>
+                        <mat-option value="500,000">500,000</mat-option>
+                        <mat-option value="600,000">600,000</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>Max Price</mat-label>
+                    <mat-select [(ngModel)]="search.maxPrice"  [ngModelOptions]="{standalone: true}">
+                        <mat-option value="100,000">100,000</mat-option>
+                        <mat-option value="200,000">200,000</mat-option>
+                        <mat-option value="300,000">300,000</mat-option>
+                        <mat-option value="400,000">400,000</mat-option>
+                        <mat-option value="500,000">500,000</mat-option>
+                        <mat-option value="600,000">600,000</mat-option>
+
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label>Beds</mat-label>
-                    <mat-select>
-                        <mat-option>1</mat-option>
-                        <mat-option>2</mat-option>
+                    <mat-select [(ngModel)]="search.beds"  [ngModelOptions]="{standalone: true}">
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="2">2</mat-option>
                     </mat-select>
                 </mat-form-field>
 
-            <button mat-flat-button type="submit"  color="primary"  >Submit</button>
-            
+                <div class="form-element" >
+                    <button mat-flat-button type="submit"  color="primary" style="height:80px; margin-top:-21px"  >Submit</button>
+                </div>
+
            </form>
         </mat-card-content>
     </mat-card>

@@ -23,7 +23,10 @@ export class SearchFormComponent {
   constructor(){}
 
   search = {
-    "name" : ""
+    "name" : "",
+    "minPrice" : "100,000",
+    "maxPrice" : "500,000",
+    "beds" : "1"
   }
 
   onSubmit() { 
