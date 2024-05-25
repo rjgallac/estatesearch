@@ -37,6 +37,9 @@ public class Property {
     @Field(type = FieldType.Integer, name = "bathrooms")
     private int bathrooms;
 
+    @Field(type = FieldType.Text, name = "image")
+    private String image;
+
     @GeoPointField
     private double[] locationAsArray;
 

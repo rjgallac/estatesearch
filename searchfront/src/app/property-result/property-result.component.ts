@@ -13,12 +13,4 @@ import {MatCardModule} from '@angular/material/card'
 export class PropertyResultComponent {
   @Input() property: Property = new Property();
 
-  randomIntFromInterval(min: number, max: number) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  randomimg() {
-    return "http://localhost:81/home" + this.randomIntFromInterval(1,6) +".jpg";
-  }
-
 }
