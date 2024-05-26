@@ -1,3 +1,5 @@
+import { Image } from './Image'
+
 export class Property {
     id: number = 0;
     address: string = "";
@@ -8,4 +10,5 @@ export class Property {
     description: string = ""; 
     price: number = 0;
     image: string = "";
+    images: Array<Image> = new Array();
 }

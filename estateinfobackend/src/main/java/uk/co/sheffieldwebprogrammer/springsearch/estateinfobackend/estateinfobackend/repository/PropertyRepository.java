@@ -10,4 +10,6 @@ import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobac
 public interface PropertyRepository extends CrudRepository<Property, Long> {
 
     Page<Property> findAll(Pageable pageable);
+
+    long count();
 }

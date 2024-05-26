@@ -1,14 +1,19 @@
 package uk.co.sheffieldwebprogrammer.imageupload.imageupload.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uk.co.sheffieldwebprogrammer.imageupload.imageupload.entity.ImageUpload;
 import uk.co.sheffieldwebprogrammer.imageupload.imageupload.repository.ImageRepository;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,6 +37,33 @@ public class ImageUploadController {
 
         String fileUploadStatus;
 
+        String thumbFilename = propertyId + "_thumb_" + uuid;
+        String filePathThumb = "/home/rob/docker-nginx/html" + File.separator + thumbFilename + ".jpg";
+
+        try {
+            ByteArrayOutputStream thumbnail = createThumbnail(file, 200);
+            try {
+
+                // Creating an object of FileOutputStream class
+                FileOutputStream fout = new FileOutputStream(filePathThumb);
+                fout.write(thumbnail.toByteArray());
+
+                // Closing the connection
+                fout.close();
+                fileUploadStatus = "File Uploaded Successfully";
+
+            }
+
+            // Catch block to handle exceptions
+            catch (Exception e) {
+                e.printStackTrace();
+                fileUploadStatus =  "Error in uploading file: " + e;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
 
         try {
 
@@ -54,6 +86,7 @@ public class ImageUploadController {
         ImageUpload imageUpload = new ImageUpload();
         imageUpload.setPropertyId(propertyId);
         imageUpload.setImageLargeFilename(filename);
+        imageUpload.setImageSmallFilename(thumbFilename);
         imageRepository.save(imageUpload);
         return fileUploadStatus;
     }
@@ -61,5 +94,14 @@ public class ImageUploadController {
     @GetMapping("/{id}")
     public List<ImageUpload> getById(@PathVariable("id") Long id) {
         return imageRepository.findByPropertyId(id);
+    }
+
+    private ByteArrayOutputStream createThumbnail(MultipartFile orginalFile, Integer width) throws IOException {
+        ByteArrayOutputStream thumbOutput = new ByteArrayOutputStream();
+        BufferedImage thumbImg = null;
+        BufferedImage img = ImageIO.read(orginalFile.getInputStream());
+        thumbImg = Scalr.resize(img, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC, width, Scalr.OP_ANTIALIAS);
+        ImageIO.write(thumbImg, orginalFile.getContentType().split("/")[1] , thumbOutput);
+        return thumbOutput;
     }
 }

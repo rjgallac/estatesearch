@@ -1,10 +1,13 @@
 package uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
+@Builder
 public class PropertyDto {
 
     private long id;
@@ -17,4 +20,5 @@ public class PropertyDto {
     private int bathrooms;
     private String image;
     private double[] locationAsArray;
+    List<ImageUploadDto> images;
 }

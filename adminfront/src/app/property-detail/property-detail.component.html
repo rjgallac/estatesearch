@@ -1,3 +1,11 @@
 <p>property-detail works!</p>
+address: {{property.address}} <br />
+price: {{property.price}} <br />
+
+<div *ngFor="let image of property.images">
+    <img src="http://localhost:81/{{image.imageSmallFilename}}.jpg" />
+
+</div>
+
 
 <input type="file" class="file-upload" (change)="onFileSelected($event)">

@@ -8,28 +8,46 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.entity.Property;
+import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.mappers.PropertyMapper;
+import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.model.ImageUploadDto;
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.model.PropertyDto;
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.model.PropertyResults;
+import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.service.ImageService;
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.service.PropertyService;
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.service.SearchService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/propertyinfo")
 public class PropertyController {
-
-    @GetMapping("/{id}")
-    @CrossOrigin
-    public String getById(@PathVariable("id") String id) {
-        return "{}";
-    }
 
     @Autowired
     private SearchService searchService;
 
     @Autowired
     private PropertyService propertyService;
+
+    @Autowired
+    private ImageService imageService;
+
+    @Autowired
+    private PropertyMapper propertyMapper;
+
+    @GetMapping("/{id}")
+    @CrossOrigin
+    public ResponseEntity<PropertyDto> getById(@PathVariable("id") long id) {
+        Optional<Property> byId = propertyService.findById(id);
+        PropertyDto dto = null;
+        if(byId.isPresent()) {
+            dto = propertyMapper.toDto(byId.get());
+        }
+        List<ImageUploadDto> images = imageService.getImages(id);
+        dto.setImages(images);
+        return ResponseEntity.ok(dto);
+    }
+
 
     @PostMapping
     @CrossOrigin
