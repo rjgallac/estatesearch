@@ -1,4 +1,5 @@
 export class Property {
+    id: number = 0;
     address: string = "";
     addressId: string = "";
     bathrooms: number = 0;

@@ -1,4 +1,4 @@
 <p>list-properties works!</p>
 <div *ngFor="let property of results.properties">
-    {{property.address}} {{property.price}} 
+    <a [routerLink]="['/property-detail/', property.id]">{{property.address}}</a>{{property.price}} 
 </div>

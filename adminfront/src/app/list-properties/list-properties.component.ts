@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyResults } from '../model/PropertyResults';
 import { PropertyService } from '../property.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-properties',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   providers: [PropertyService],
   templateUrl: './list-properties.component.html',
   styleUrl: './list-properties.component.css'
