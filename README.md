@@ -20,6 +20,7 @@ Customer facing site
 - Angular
 
 TODO
-- add router to angular
-- add material to angular
+- image manipulation (auto create thumbnail in image service)
+- add analytics service - every search logged, each property viewed
+- add favourite + shortlist user service
 - add system design diagram 
