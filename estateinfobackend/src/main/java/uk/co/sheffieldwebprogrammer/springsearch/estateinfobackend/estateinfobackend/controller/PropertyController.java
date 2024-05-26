@@ -51,7 +51,7 @@ public class PropertyController {
 
     @PostMapping
     @CrossOrigin
-    public void addProperty(@RequestBody PropertyDto propertyDto) {
+    public ResponseEntity<PropertyDto> addProperty(@RequestBody PropertyDto propertyDto) {
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());
         property.setPrice(propertyDto.getPrice());
@@ -60,6 +60,7 @@ public class PropertyController {
         property.setImage(propertyDto.getImage());
         Property save = propertyService.save(property);
         propertyDto.setId(save.getId());
+        return ResponseEntity.ok(propertyDto);
 
     }
 
@@ -87,7 +88,7 @@ public class PropertyController {
         if(byId.isPresent()) {
             Property property = byId.get();
             searchService.delete(property.getSearchId());
-            imageService.delete(id);
+            imageService.deleteAllByPropertyId(id);
             propertyService.delete(id);
         }
 

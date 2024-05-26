@@ -107,4 +107,5 @@ public class PropertyController {
         propertyRepository.deleteById(id);
     }
 
+
 }

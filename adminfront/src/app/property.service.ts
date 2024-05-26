@@ -16,8 +16,8 @@ export class PropertyService {
     return this.http.get<PropertyResults>('http://localhost:8082/propertyinfo?pageNo=' + pageNo );  
   }
 
-  addProperty(property: Property) {
-    this.http.post('http://localhost:8082/propertyinfo', property).subscribe();
+  addProperty(property: Property): Observable<Property> {
+    return this.http.post<Property>('http://localhost:8082/propertyinfo', property);
   }
 
   getDashboard(): Observable<Dashboard> {

@@ -1,7 +1,7 @@
 <mat-card class="example-card">
     <mat-card-header>
         <div mat-card-avatar style="background-image: url('http://localhost:81/{{property.image}}.jpg');" class="example-header-image"></div>
-        <mat-card-title><a [routerLink]="'/detail-view'">{{property.address}}</a></mat-card-title>
+        <mat-card-title><a [routerLink]="['/detail-view/', property.propertyId]">{{property.address}}</a></mat-card-title>
         <mat-card-subtitle>£ {{property.price}}</mat-card-subtitle>
     </mat-card-header>
 

@@ -7,6 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card'
 import { PropertyService } from '../property.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-property',
   standalone: true,
@@ -19,10 +20,12 @@ export class AddPropertyComponent {
 
   property: Property = new Property();
 
-  constructor(private propertyService: PropertyService){}
+  constructor(private propertyService: PropertyService, private router: Router){}
 
   onSubmit() { 
-    this.propertyService.addProperty(this.property);
+    this.propertyService.addProperty(this.property).subscribe((property: Property) => {
+      this.router.navigate(['property-detail', property.id])
+    });
   }
 
 }

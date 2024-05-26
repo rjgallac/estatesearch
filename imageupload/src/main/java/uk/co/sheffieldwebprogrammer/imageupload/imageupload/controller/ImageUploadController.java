@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -27,7 +28,7 @@ public class ImageUploadController {
 
     @PostMapping("/{propertyId}")
     @CrossOrigin
-    public String upload(@PathVariable("propertyId") long propertyId , @RequestParam("file") MultipartFile file) {
+    public void upload(@PathVariable("propertyId") long propertyId , @RequestParam("file") MultipartFile file) {
 
         UUID uuid = UUID.randomUUID();
 
@@ -88,10 +89,34 @@ public class ImageUploadController {
         imageUpload.setImageLargeFilename(filename);
         imageUpload.setImageSmallFilename(thumbFilename);
         imageRepository.save(imageUpload);
-        return fileUploadStatus;
+//        return fileUploadStatus;
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
+    public void deleteByImageId(@PathVariable("id") long id) {
+        Optional<ImageUpload> byId = imageRepository.findById(id);
+        if(byId.isPresent()) {
+            ImageUpload imageUpload = byId.get();
+            File myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageSmallFilename() + ".jpg");
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+
+            myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageLargeFilename() + ".jpg");
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+            imageRepository.deleteById(id);
+
+        }
+    }
+
+    @DeleteMapping("/deletebypropertyid/{id}")
     @CrossOrigin
     public void delete(@PathVariable("id") long id) {
         List<ImageUpload> byPropertyId = imageRepository.findByPropertyId(id);

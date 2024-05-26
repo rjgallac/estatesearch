@@ -19,17 +19,17 @@ export class PropertyDetailComponent implements OnInit{
   
   property: Property = new Property();
 
+  propertyId: number = 0;
+
 
   constructor(private http: HttpClient, private propertyService: PropertyService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
-      var id = Number(params.get('id'));
-      console.log(id);
-      this.propertyService.getProperty(id).subscribe((property: Property) =>{
-        this.property = property;
-      })
+      this.propertyId = Number(params.get('id'));
+      console.log(this.propertyId);
+      this.getProperty(this.propertyId);
     });
 
    
@@ -43,7 +43,9 @@ export class PropertyDetailComponent implements OnInit{
         const formData = new FormData();
         formData.append("file", file);
         const upload$ = this.http.post("http://127.0.0.1:8084/imageupload/" + this.property.id, formData);
-        upload$.subscribe();
+        upload$.subscribe(() =>{
+          this.getProperty(this.propertyId)
+        });
     }
   }
 
@@ -59,5 +61,18 @@ export class PropertyDetailComponent implements OnInit{
   delete() {
     this.http.delete('http://localhost:8082/propertyinfo/'+ this.property.id).subscribe();
 
+  }
+
+  deleteImage(id: number) {
+    this.http.delete('http://localhost:8084/imageupload/'+ id).subscribe(() =>{
+      this.getProperty(this.propertyId);
+    });
+
+  }
+
+  getProperty(id: number){
+    this.propertyService.getProperty(id).subscribe((property: Property) =>{
+      this.property = property;
+    })
   }
 }

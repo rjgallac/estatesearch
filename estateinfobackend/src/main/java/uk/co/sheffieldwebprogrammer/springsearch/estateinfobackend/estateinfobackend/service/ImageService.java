@@ -21,8 +21,8 @@ public class ImageService {
         return exchange.getBody();
     }
 
-    public void delete(long id) {
-        restTemplate.delete("http://localhost:8084/imageupload/" + id);
+    public void deleteAllByPropertyId(long id) {
+        restTemplate.delete("http://localhost:8084/imageupload/deletebypropertyid/" + id);
 
     }
 }

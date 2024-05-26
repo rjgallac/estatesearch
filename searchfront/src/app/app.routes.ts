@@ -9,7 +9,7 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   {
-    path: 'detail-view',
+    path: 'detail-view/:id',
     component: DetailViewComponent
 }
 ];
