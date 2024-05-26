@@ -87,6 +87,7 @@ public class PropertyController {
         if(byId.isPresent()) {
             Property property = byId.get();
             searchService.delete(property.getSearchId());
+            imageService.delete(id);
             propertyService.delete(id);
         }
 

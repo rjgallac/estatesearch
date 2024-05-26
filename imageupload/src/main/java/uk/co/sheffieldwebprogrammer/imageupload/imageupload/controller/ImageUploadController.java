@@ -91,6 +91,29 @@ public class ImageUploadController {
         return fileUploadStatus;
     }
 
+    @DeleteMapping("/{id}")
+    @CrossOrigin
+    public void delete(@PathVariable("id") long id) {
+        List<ImageUpload> byPropertyId = imageRepository.findByPropertyId(id);
+        for (ImageUpload imageUpload : byPropertyId) {
+            File myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageSmallFilename() + ".jpg");
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+
+            myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageLargeFilename() + ".jpg");
+            if (myObj.delete()) {
+                System.out.println("Deleted the file: " + myObj.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+            imageRepository.deleteById(imageUpload.getId());
+        }
+
+    }
+
     @GetMapping("/{id}")
     public List<ImageUpload> getById(@PathVariable("id") Long id) {
         return imageRepository.findByPropertyId(id);
