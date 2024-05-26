@@ -1,4 +1,9 @@
 package uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.repository;
 
-public class PropertyRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.entity.Property;
+
+@Repository
+public interface PropertyRepository extends CrudRepository<Property, Long> {
 }

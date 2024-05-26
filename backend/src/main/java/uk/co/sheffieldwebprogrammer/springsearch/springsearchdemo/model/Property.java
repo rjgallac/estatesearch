@@ -16,6 +16,8 @@ public class Property {
     @Id
     private String addressId;
 
+    private long propertyId;
+
     @Field(type = FieldType.Text, name = "address")
     private String address;
 

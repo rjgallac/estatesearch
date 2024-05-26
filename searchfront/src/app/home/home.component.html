@@ -1,5 +1,5 @@
 <app-search-form (propertySearch)="propertySearch($event, 0)"></app-search-form>
-<!-- <app-map></app-map> -->
+<app-map *ngIf="totalResults != 0"></app-map>
 <br />&nbsp;<br />  
 <ng-container *ngIf="totalResults != 0">
 

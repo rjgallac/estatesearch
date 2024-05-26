@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.model.Property;
+import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.model.PropertyDto;
 import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.model.PropertyResults;
 import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.repository.PropertyRepository;
 
@@ -43,6 +44,19 @@ public class PropertyController {
             Property savedProperty = propertyRepository.save(property);
 
         }
+
+    }
+
+    @PostMapping
+    public void add(@RequestBody PropertyDto propertyDto) {
+        Property property = new Property();
+        property.setAddress(propertyDto.getAddress());
+        property.setPrice(propertyDto.getPrice());
+        property.setDescription(propertyDto.getDescription());
+        property.setBedrooms(propertyDto.getBedrooms());
+        property.setPropertyId(propertyDto.getId());
+        property.setImage(propertyDto.getImage());
+        Property savedProperty = propertyRepository.save(property);
 
     }
 
