@@ -5,11 +5,12 @@ import { PropertyService } from '../property.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
 import { ListPropertiesComponent } from '../list-properties/list-properties.component';
+import { AddPropertyComponent } from '../add-property/add-property.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MatPaginatorModule, ListPropertiesComponent],
+  imports: [CommonModule, MatPaginatorModule, ListPropertiesComponent, AddPropertyComponent],
   templateUrl: './home.component.html',
   providers: [PropertyService],
   styleUrls: ['./home.component.css']

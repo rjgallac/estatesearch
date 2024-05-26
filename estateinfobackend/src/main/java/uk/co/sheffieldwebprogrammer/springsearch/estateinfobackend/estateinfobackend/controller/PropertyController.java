@@ -32,6 +32,7 @@ public class PropertyController {
     private PropertyService propertyService;
 
     @PostMapping
+    @CrossOrigin
     public void addProperty(@RequestBody PropertyDto propertyDto) {
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());

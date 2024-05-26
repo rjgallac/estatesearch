@@ -1,0 +1,45 @@
+<p>add-property works!</p>
+
+
+<mat-card>
+    <mat-card-content>
+        <form (ngSubmit)="onSubmit()" class="container">
+            <mat-form-field class="form-element">
+                <label for="name">Desc: </label>
+                <input matInput id="name" [(ngModel)]="property.description" placeholder="name" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <label for="name">Desc: </label>
+                <input matInput id="name" [(ngModel)]="property.address" placeholder="name" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <mat-label>price</mat-label>
+                <mat-select [(ngModel)]="property.price"  [ngModelOptions]="{standalone: true}">
+                    <mat-option value="100000">100,000</mat-option>
+                    <mat-option value="200000">200,000</mat-option>
+                    <mat-option value="300000">300,000</mat-option>
+                    <mat-option value="400000">400,000</mat-option>
+                    <mat-option value="500000">500,000</mat-option>
+                    <mat-option value="600000">600,000</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <mat-label>Beds</mat-label>
+                <mat-select [(ngModel)]="property.bedrooms"  [ngModelOptions]="{standalone: true}">
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="form-element" >
+                <button mat-flat-button type="submit"  color="primary" style="height:80px; margin-top:-21px"  >Submit</button>
+            </div>
+
+       </form>
+    </mat-card-content>
+</mat-card>
+
