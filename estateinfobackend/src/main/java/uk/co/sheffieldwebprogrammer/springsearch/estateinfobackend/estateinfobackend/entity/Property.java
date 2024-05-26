@@ -16,6 +16,8 @@ public class Property {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String searchId;
+
     private String address;
 
     private long price;

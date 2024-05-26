@@ -9,3 +9,12 @@ price: {{property.price}} <br />
 
 
 <input type="file" class="file-upload" (change)="onFileSelected($event)">
+
+<br />
+
+<button mat-raised-button  color="primary" (click)="sendToSearch()">Send to Search</button>
+
+<br />
+<button mat-raised-button  color="primary" (click)="deleteFromSearch()">Delete from Search</button>
+<br />
+<button mat-raised-button  color="primary" (click)="delete()">Delete</button>

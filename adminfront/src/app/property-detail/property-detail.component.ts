@@ -45,6 +45,19 @@ export class PropertyDetailComponent implements OnInit{
         const upload$ = this.http.post("http://127.0.0.1:8084/imageupload/" + this.property.id, formData);
         upload$.subscribe();
     }
-}
+  }
 
+  sendToSearch() {
+    this.http.get('http://localhost:8082/propertyinfo/sendToSearch/'+ this.property.id).subscribe();
+  }
+
+  deleteFromSearch() {
+    this.http.delete('http://localhost:8082/propertyinfo/delete-from-search/'+ this.property.id).subscribe();
+
+  }
+
+  delete() {
+    this.http.delete('http://localhost:8082/propertyinfo/'+ this.property.id).subscribe();
+
+  }
 }

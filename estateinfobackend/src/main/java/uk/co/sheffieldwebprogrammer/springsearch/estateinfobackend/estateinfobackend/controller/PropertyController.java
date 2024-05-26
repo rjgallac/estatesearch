@@ -60,9 +60,51 @@ public class PropertyController {
         property.setImage(propertyDto.getImage());
         Property save = propertyService.save(property);
         propertyDto.setId(save.getId());
-        searchService.sendToSearch(propertyDto);
 
     }
+
+    @GetMapping("/sendToSearch/{propertyId}")
+    @CrossOrigin
+    public void sendToSearch(@PathVariable("propertyId") long propertyId) {
+        Optional<Property> byId = propertyService.findById(propertyId);
+        List<ImageUploadDto> images = imageService.getImages(propertyId);
+        if(byId.isPresent()) {
+            Property property = byId.get();
+            PropertyDto dto = propertyMapper.toDto(property);
+            dto.setImage(images.getFirst().getImageSmallFilename());
+            String s = searchService.sendToSearch(dto);
+            property.setSearchId(s);
+            propertyService.save(property);
+
+        }
+
+    }
+
+    @DeleteMapping("/{id}")
+    @CrossOrigin
+    public void delete(@PathVariable("id") long id) {
+        Optional<Property> byId = propertyService.findById(id);
+        if(byId.isPresent()) {
+            Property property = byId.get();
+            searchService.delete(property.getSearchId());
+            propertyService.delete(id);
+        }
+
+    }
+
+    @DeleteMapping("/delete-from-search/{id}")
+    @CrossOrigin
+    public void deleteFromSearch(@PathVariable("id") long id) {
+        Optional<Property> byId = propertyService.findById(id);
+        if(byId.isPresent()) {
+            Property property = byId.get();
+            searchService.delete(property.getSearchId());
+
+        }
+
+    }
+
+
 
     @GetMapping
     @CrossOrigin

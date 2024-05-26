@@ -31,4 +31,7 @@ public class PropertyService {
         return propertyRepository.count();
     }
 
+    public void delete(long id) {
+        propertyRepository.deleteById(id);
+    }
 }

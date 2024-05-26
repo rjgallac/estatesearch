@@ -48,7 +48,7 @@ public class PropertyController {
     }
 
     @PostMapping
-    public void add(@RequestBody PropertyDto propertyDto) {
+    public String add(@RequestBody PropertyDto propertyDto) {
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());
         property.setPrice(propertyDto.getPrice());
@@ -57,6 +57,7 @@ public class PropertyController {
         property.setPropertyId(propertyDto.getId());
         property.setImage(propertyDto.getImage());
         Property savedProperty = propertyRepository.save(property);
+        return savedProperty.getAddressId();
 
     }
 
@@ -92,12 +93,18 @@ public class PropertyController {
         Pageable pageable = PageRequest.of(pageNo,10);
         PropertyResults propertyResults = new PropertyResults();
 //        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContaining(query, pageable);
-        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContainingAndPriceGreaterThanAndBedrooms(query, minPrice, bedrooms, pageable);
+        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContainingAndPriceGreaterThanEqualAndBedroomsGreaterThanEqual(query, minPrice, bedrooms, pageable);
         List<Property> properties = propertyRepositoryByDescriptionContaining.getContent();
         propertyResults.setProperties(properties);
         propertyResults.setTotalResults(propertyRepositoryByDescriptionContaining.getTotalElements());
         propertyResults.setPages(propertyRepositoryByDescriptionContaining.getTotalPages());
         return ResponseEntity.ok(propertyResults);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/{id}")
+    public void deleteFromSearch(@PathVariable("id") String id) {
+        propertyRepository.deleteById(id);
     }
 
 }
