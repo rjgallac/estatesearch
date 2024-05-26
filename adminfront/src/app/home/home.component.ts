@@ -10,18 +10,12 @@ import { AddPropertyComponent } from '../add-property/add-property.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MatPaginatorModule, ListPropertiesComponent, AddPropertyComponent],
+  imports: [],
   templateUrl: './home.component.html',
-  providers: [PropertyService],
+  providers: [],
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent { 
-
-  
-
-  totalResults: number = 0;
-
-  minPrice: number = 0;
 
   constructor(){}
 

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-list-properties',
   standalone: true,
   imports: [CommonModule],
+  providers: [PropertyService],
   templateUrl: './list-properties.component.html',
   styleUrl: './list-properties.component.css'
 })
@@ -15,6 +16,7 @@ export class ListPropertiesComponent implements OnInit{
   results: PropertyResults = new PropertyResults();
 
   constructor(private propertyService: PropertyService){}
+
   ngOnInit(): void {
     this.propertyService.getProperties(0).subscribe((propertyResults: PropertyResults) => {
       this.results = propertyResults;

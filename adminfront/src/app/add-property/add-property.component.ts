@@ -12,7 +12,8 @@ import { PropertyService } from '../property.service';
   standalone: true,
   imports: [FormsModule, MatButton, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule],
   templateUrl: './add-property.component.html',
-  styleUrl: './add-property.component.css'
+  styleUrl: './add-property.component.css',
+  providers: [PropertyService]
 })
 export class AddPropertyComponent {
 
