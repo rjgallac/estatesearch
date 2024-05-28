@@ -13,6 +13,8 @@ http://localhost:9200/_stats/indexing/?pretty=true
 
 http://localhost:9200/property/_stats?pretty=true
 
+http://localhost:9200/property/_search
+
 http://localhost:9200/property/_search?q=description:beach
 
 run this to generate lots of random data
@@ -21,6 +23,7 @@ http://localhost:8080/property
 run this to query all those cvs that contain JAVA keyword
 http://localhost:8080/property/all
 
+curl -X DELETE "localhost:9200/property/_doc/lQFwto8Bglzi8IgTrkHi"
 
 ## docker instructions
 docker build -t rjgallac/searchapp .
