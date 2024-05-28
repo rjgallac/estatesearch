@@ -6,6 +6,10 @@
 ![alt text](https://github.com/rjgallac/estatesearch/blob/c8eed77e0643e1ef1c145bf18a5749d13137ada7/toplevelarchitecture.drawio.png)
 
 
+## Demo Video
+
+[![Watch the video](https://img.youtube.com/vi/FXfud3NmZJ0/0.jpg)](https://youtu.be/FXfud3NmZJ0)
+
 ## Search App
 
 Search for properties 
