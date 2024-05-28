@@ -3,7 +3,7 @@
 
 ## Architecture
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/rjgallac/estatesearch/blob/c8eed77e0643e1ef1c145bf18a5749d13137ada7/toplevelarchitecture.drawio.png)
 
 
 ## Search App
