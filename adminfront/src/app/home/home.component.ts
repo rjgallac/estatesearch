@@ -8,11 +8,16 @@ import { ListPropertiesComponent } from '../list-properties/list-properties.comp
 import { AddPropertyComponent } from '../add-property/add-property.component';
 import { Dashboard } from '../model/Dashboard';
 import { Observable } from 'rxjs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { BarChartComponent } from '../bar-chart/bar-chart.component';
+import { LineChartComponent } from '../line-chart/line-chart.component';
+import { PieChartComponent } from '../pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, BarChartComponent, LineChartComponent, PieChartComponent],
   templateUrl: './home.component.html',
   providers: [PropertyService],
   styleUrls: ['./home.component.css']
