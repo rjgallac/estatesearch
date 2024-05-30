@@ -30,7 +30,8 @@ Customer facing site
 - Angular
 
 TODO
-- image manipulation (auto create thumbnail in image service)
+- admin list - material table + pagination
 - add analytics service - every search logged, each property viewed
 - add favourite + shortlist user service
-- add system design diagram 
+- map in admin - click for lat and long
+- submit multi image on create in admin
