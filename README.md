@@ -35,3 +35,5 @@ TODO
 - add favourite + shortlist user service
 - map in admin - click for lat and long
 - submit multi image on create in admin
+- add property type
+- add rent/buy
