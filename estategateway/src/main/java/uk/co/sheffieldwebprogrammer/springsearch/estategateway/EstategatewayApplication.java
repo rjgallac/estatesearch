@@ -1,4 +1,4 @@
-package uk.co.sheffieldwebprogrammer.imageupload.imageupload;
+package uk.co.sheffieldwebprogrammer.springsearch.estategateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ImageuploadApplication {
+public class EstategatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ImageuploadApplication.class, args);
+		SpringApplication.run(EstategatewayApplication.class, args);
 	}
 
 }

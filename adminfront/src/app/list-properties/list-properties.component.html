@@ -1,4 +1,19 @@
-<p>list-properties works!</p>
-<div *ngFor="let property of results.properties">
-    <a [routerLink]="['/property-detail/', property.id]">{{property.address}}</a>{{property.price}} 
-</div>
+<h2>Properties</h2>
+<table class="table table-striped table-bordered">
+    <tr><th>Address</th><th>Price</th></tr>
+    <tr *ngFor="let property of results.properties">
+        <td>{{property.address}}</td>
+        <td>{{property.bedrooms}}</td> 
+        <td>{{property.price}}</td> 
+
+        <td>
+            <a [routerLink]="['/property-detail/', property.id]">
+                <button mat-raised-button color="primary">VIEW</button>
+            </a>
+            <button mat-raised-button color="primary">Edit</button>&nbsp;
+
+            <button mat-raised-button color="accent">Delete</button>
+        </td>
+    </tr>
+
+</table>
