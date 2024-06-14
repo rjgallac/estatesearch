@@ -17,7 +17,7 @@ public class DashboardController {
     private PropertyService propertyService;
 
     @GetMapping
-    @CrossOrigin
+//    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<DashboardDto> getDashboard() {
         DashboardDto dashboardDto = new DashboardDto();
         dashboardDto.setNoProperties(propertyService.countProperties());

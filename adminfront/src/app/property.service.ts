@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PropertyResults } from './model/PropertyResults';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Property } from './model/Property';
 import { Dashboard } from './model/Dashboard';
 
@@ -21,7 +21,10 @@ export class PropertyService {
   }
 
   getDashboard(): Observable<Dashboard> {
-    return this.http.get<Dashboard>('http://localhost:8080/dashboard');
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+  };
+    return this.http.get<Dashboard>('http://localhost:8080/dashboard', options);
   }
 
   getProperty(propertyId: number): Observable<Property> {

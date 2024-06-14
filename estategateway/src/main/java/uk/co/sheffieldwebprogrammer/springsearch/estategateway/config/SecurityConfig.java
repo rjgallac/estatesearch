@@ -13,6 +13,9 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtGrantedAuthoritiesConverterAdapter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
@@ -28,11 +31,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
+
         serverHttpSecurity
                 .authorizeExchange( exchange -> exchange
+
                         .pathMatchers("/propertyinfo/**")
                         .permitAll()
-                        .pathMatchers("/dashboard").hasAuthority("ROLE_user")
+                        .pathMatchers("/dashboard").hasAuthority("ROLE_admin")
 //                        .pathMatchers("/dashboard").authenticated()
                         .anyExchange()
                         .authenticated())
@@ -41,6 +46,8 @@ public class SecurityConfig {
                         .jwt(jwtConfig -> jwtConfig.jwtAuthenticationConverter(keycloakJwtAuthenticationConverter))
 
                 );
+        serverHttpSecurity.cors(cors -> cors.disable());
+
         return serverHttpSecurity.build();
     }
 
