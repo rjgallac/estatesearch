@@ -6,6 +6,8 @@ import uk.co.sheffieldwebprogrammer.estatesearch.userservice.entity.UserLike;
 import uk.co.sheffieldwebprogrammer.estatesearch.userservice.model.Like;
 import uk.co.sheffieldwebprogrammer.estatesearch.userservice.repository.UserLikeRepository;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/userservice/userlikeservice")
 public class UserLikeController {
@@ -15,7 +17,7 @@ public class UserLikeController {
 
     @GetMapping
     public void getUser(){
-
+        System.out.printf("HERE");
     }
 
     @PostMapping("/{userid}")
@@ -25,4 +27,16 @@ public class UserLikeController {
         userLike.setLikedProperty(like.getPropertyId());
         userLikeRepository.save(userLike);
     }
+
+    @GetMapping("/{userid}")
+    public List<UserLike> getLikesByUserId(@PathVariable("userid") String userid) {
+        return userLikeRepository.findByUserId(userid);
+    }
+
+
+    @GetMapping("/total")
+    public long getTotal() {
+        return userLikeRepository.count();
+    }
+
 }

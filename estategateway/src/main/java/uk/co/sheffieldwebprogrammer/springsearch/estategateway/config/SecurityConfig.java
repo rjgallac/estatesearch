@@ -35,7 +35,7 @@ public class SecurityConfig {
         serverHttpSecurity
                 .authorizeExchange( exchange -> exchange
 
-                        .pathMatchers("/propertyinfo/**", "/search/**", "/userservice/**")
+                        .pathMatchers("/propertyinfo/**", "/search/**", "/userservice/**", "/analyticsservice/**")
                         .permitAll()
                         .pathMatchers("/dashboard").hasAuthority("ROLE_admin")
 //                        .pathMatchers("/dashboard").authenticated()
@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .jwt(jwtConfig -> jwtConfig.jwtAuthenticationConverter(keycloakJwtAuthenticationConverter))
 
                 );
+        serverHttpSecurity.csrf(crsf -> crsf.disable());
         serverHttpSecurity.cors(cors -> cors.disable());
 
         return serverHttpSecurity.build();
