@@ -6,22 +6,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Entity
-public class UserData {
+public class UserLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
+    private String userId;
 
-    private List<Long> likedProperties;
-
-    private List<Long> shortlistedProperties;
-
+    private long likedProperty;
 
 
 }

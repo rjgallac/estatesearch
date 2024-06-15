@@ -14,7 +14,9 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button  color="primary">LIKE</button>
+        <button mat-raised-button color="primary" (click)="like(property.propertyId)">LIKE</button>
         <button mat-raised-button color="accent">SHARE</button>
+        <button mat-raised-button color="accent">SHORLIST</button>
+
     </mat-card-actions>
 </mat-card>

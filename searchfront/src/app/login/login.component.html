@@ -1,0 +1,22 @@
+<p>login works!</p>
+
+<mat-card>
+    <mat-card-content>
+        <form (ngSubmit)="onSubmit()" class="container">
+            <mat-form-field class="form-element">
+                <label for="name">Name: </label>
+                <input matInput id="name" [(ngModel)]="login.name" placeholder="name" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <label for="password">Password: </label>
+                <input matInput id="password" [(ngModel)]="login.password" placeholder="password" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+
+            <div class="form-element" >
+                <button mat-flat-button type="submit"  color="primary" style="height:80px; margin-top:-21px"  >Login</button>
+            </div>
+
+       </form>
+    </mat-card-content>
+</mat-card>

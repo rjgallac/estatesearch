@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
-@RequestMapping("property")
+@RequestMapping("search/property")
 public class PropertyController {
 
     @Autowired
@@ -83,7 +83,6 @@ public class PropertyController {
         return propertyRepository.findByDescriptionContaining("JAVA", pageable).getContent();
     }
 
-    @CrossOrigin
     @RequestMapping("searchquery")
     @GetMapping
     public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo,
@@ -101,7 +100,6 @@ public class PropertyController {
         return ResponseEntity.ok(propertyResults);
     }
 
-    @CrossOrigin
     @DeleteMapping("/{id}")
     public void deleteFromSearch(@PathVariable("id") String id) {
         propertyRepository.deleteById(id);
