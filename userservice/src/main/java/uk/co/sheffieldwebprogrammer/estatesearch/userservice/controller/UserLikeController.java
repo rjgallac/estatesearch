@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import uk.co.sheffieldwebprogrammer.estatesearch.userservice.entity.UserLike;
 import uk.co.sheffieldwebprogrammer.estatesearch.userservice.model.Like;
 import uk.co.sheffieldwebprogrammer.estatesearch.userservice.repository.UserLikeRepository;
-import uk.co.sheffieldwebprogrammer.estatesearch.userservice.repository.UserShortlistRepository;
 
 @RestController
 @RequestMapping("/userservice/userlikeservice")

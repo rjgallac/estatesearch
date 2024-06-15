@@ -21,7 +21,7 @@ public class UserShortlistController {
     }
 
     @PostMapping("/{userid}")
-    public void addLike(@PathVariable("userid") String userid, @RequestBody Shortlist shortlist) {
+    public void addShortlist(@PathVariable("userid") String userid, @RequestBody Shortlist shortlist) {
         UserShortlist userShortlist = new UserShortlist();
         userShortlist.setUserId(userid);
         userShortlist.setShortlistProperty(shortlist.getPropertyId());

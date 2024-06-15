@@ -37,3 +37,11 @@ TODO
 - submit multi image on create in admin
 - add property type
 - add rent/buy
+
+## Use
+
+Eureka
+http://localhost:8761/
+
+Keycloak
+http://localhost:8181/
