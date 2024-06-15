@@ -3,7 +3,7 @@
 
 ## Architecture
 
-![alt text](https://github.com/rjgallac/estatesearch/blob/78252d0648be667e368b03f358c121ec63eb51fe/toplevelarchitecture.drawio.png)
+![alt text](https://github.com/rjgallac/estatesearch/blob/c6c8065e1841a355955c0bb0cd980aa4f696c65b/toplevelarchitecture.drawio.png)
 
 
 ## Demo Video
