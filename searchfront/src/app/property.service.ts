@@ -15,7 +15,7 @@ export class PropertyService {
   constructor(private http: HttpClient) { }
 
   getProperties(searchForm: SearchForm, pageNo: number): Observable<PropertyResults> {
-    return this.http.get<PropertyResults>('http://localhost:8080/property/searchquery?query=' 
+    return this.http.get<PropertyResults>('http://localhost:8080/search/property/searchquery?query=' 
       + searchForm.name + '&pageNo=' + pageNo + '&minPrice=' + searchForm.minPrice 
       + '&bedrooms=' + searchForm.bedrooms);  
   }

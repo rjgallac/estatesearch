@@ -23,7 +23,7 @@ export class PropertyService {
   getDashboard(): Observable<Dashboard> {
     let options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-  };
+    };
     return this.http.get<Dashboard>('http://localhost:8080/dashboard', options);
   }
 
