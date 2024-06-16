@@ -15,6 +15,7 @@ public class PropertyDto {
     private long price;
     private LocalDate datePosted;
     private String propertyType;
+    private String type;
     private String description;
     private int bedrooms;
     private int bathrooms;

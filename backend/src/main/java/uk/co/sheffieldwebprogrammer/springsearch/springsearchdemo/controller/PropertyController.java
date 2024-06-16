@@ -57,6 +57,8 @@ public class PropertyController {
         property.setDescription(propertyDto.getDescription());
         property.setBedrooms(propertyDto.getBedrooms());
         property.setPropertyId(propertyDto.getId());
+        property.setPropertyType(propertyDto.getPropertyType());
+        property.setType(propertyDto.getType());
         property.setImage(propertyDto.getImage());
         Property savedProperty = propertyRepository.save(property);
         return savedProperty.getAddressId();
@@ -89,12 +91,13 @@ public class PropertyController {
     @GetMapping
     public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo,
                                                     @Nullable @RequestParam(value = "minPrice", required = false) long minPrice,
-                                                    @Nullable @RequestParam(value = "bedrooms", required = false) int bedrooms) {
+                                                    @Nullable @RequestParam(value = "bedrooms", required = false) int bedrooms,
+                                                    @RequestParam("propertyType") String propertyType, @RequestParam("type") String type) {
 //        Sort sortBy = Sort.by(Sort.Order.asc("description"));
         Pageable pageable = PageRequest.of(pageNo,10);
         PropertyResults propertyResults = new PropertyResults();
 //        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContaining(query, pageable);
-        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContainingAndPriceGreaterThanEqualAndBedroomsGreaterThanEqual(query, minPrice, bedrooms, pageable);
+        Page<Property> propertyRepositoryByDescriptionContaining = propertyRepository.findByDescriptionContainingAndPriceGreaterThanEqualAndBedroomsGreaterThanEqualAndPropertyTypeAndType(query, minPrice, bedrooms, propertyType, type, pageable);
         List<Property> properties = propertyRepositoryByDescriptionContaining.getContent();
         propertyResults.setProperties(properties);
         propertyResults.setTotalResults(propertyRepositoryByDescriptionContaining.getTotalElements());

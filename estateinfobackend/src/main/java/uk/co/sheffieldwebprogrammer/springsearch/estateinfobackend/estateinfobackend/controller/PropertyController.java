@@ -1,5 +1,6 @@
 package uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,11 +17,13 @@ import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobac
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.service.PropertyService;
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.service.SearchService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/propertyinfo")
+@Slf4j
 public class PropertyController {
 
     @Autowired
@@ -43,8 +46,12 @@ public class PropertyController {
         if(byId.isPresent()) {
             dto = propertyMapper.toDto(byId.get());
         }
-        List<ImageUploadDto> images = imageService.getImages(id);
-        dto.setImages(images);
+        try {
+            List<ImageUploadDto> images = imageService.getImages(id);
+            dto.setImages(images);
+        }catch (Exception e) {
+            log.error(e.getMessage());
+        }
         return ResponseEntity.ok(dto);
     }
 
@@ -58,6 +65,8 @@ public class PropertyController {
         property.setBedrooms(propertyDto.getBedrooms());
         property.setDescription(propertyDto.getDescription());
         property.setImage(propertyDto.getImage());
+        property.setPropertyType(propertyDto.getPropertyType());
+        property.setType(propertyDto.getType());
         Property save = propertyService.save(property);
         propertyDto.setId(save.getId());
         return ResponseEntity.ok(propertyDto);
@@ -68,11 +77,20 @@ public class PropertyController {
     @CrossOrigin
     public void sendToSearch(@PathVariable("propertyId") long propertyId) {
         Optional<Property> byId = propertyService.findById(propertyId);
-        List<ImageUploadDto> images = imageService.getImages(propertyId);
+        List<ImageUploadDto> images = new ArrayList<>();
+        try {
+            images = imageService.getImages(propertyId);
+        }catch (Exception e) {
+            log.error(e.getMessage());
+        }
         if(byId.isPresent()) {
             Property property = byId.get();
             PropertyDto dto = propertyMapper.toDto(property);
-            dto.setImage(images.getFirst().getImageSmallFilename());
+            try {
+                dto.setImage(images.getFirst().getImageSmallFilename());
+            }catch (Exception e) {
+                log.error(e.getMessage());
+            }
             String s = searchService.sendToSearch(dto);
             property.setSearchId(s);
             propertyService.save(property);

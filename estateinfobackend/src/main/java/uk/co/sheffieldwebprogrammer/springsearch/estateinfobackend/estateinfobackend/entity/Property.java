@@ -18,6 +18,8 @@ public class Property {
 
     private String searchId;
 
+    private String type;
+    
     private String address;
 
     private long price;

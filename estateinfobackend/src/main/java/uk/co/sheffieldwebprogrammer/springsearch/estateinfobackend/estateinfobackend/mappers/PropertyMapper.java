@@ -14,6 +14,8 @@ public class PropertyMapper {
                 .price(property.getPrice())
                 .bedrooms(property.getBedrooms())
                 .description(property.getDescription())
+                .type(property.getType())
+                .propertyType(property.getPropertyType())
                 .build();
     }
 

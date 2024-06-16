@@ -30,6 +30,9 @@ public class Property {
     @Field(type = FieldType.Text, name = "propertyType")
     private String propertyType;
 
+    @Field(type = FieldType.Text, name = "type")
+    private String type;
+
     @Field(type = FieldType.Text, name = "description")
     private String description;
 
