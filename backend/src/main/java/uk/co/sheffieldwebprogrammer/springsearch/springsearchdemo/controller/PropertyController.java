@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @RequestMapping("search/property")
+@CrossOrigin
 public class PropertyController {
 
     @Autowired

@@ -1,16 +1,36 @@
     <mat-card>
         <mat-card-content>
             <form (ngSubmit)="onSubmit()" class="container">
+
                 <mat-form-field class="form-element">
-                    <label for="name">Search: </label>
-                    <input matInput id="name" [(ngModel)]="searchForm.name" placeholder="name" [ngModelOptions]="{standalone: true}">
+                    <mat-label>Type</mat-label>
+                    <mat-select [(ngModel)]="searchForm.type"  [ngModelOptions]="{standalone: true}">
+                        <mat-option value="rent">Rent</mat-option>
+                        <mat-option value="buy">Buy</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <label for="terms">Search: </label>
+                    <input matInput id="terms" [(ngModel)]="searchForm.terms" placeholder="terms" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>Type</mat-label>
+                    <mat-select [(ngModel)]="searchForm.houseType"  [ngModelOptions]="{standalone: true}">
+                        <mat-option value="terraced">terraced</mat-option>
+                        <mat-option value="detached">detached</mat-option>
+                        <mat-option value="semidetached">semi detached</mat-option>
+                        <mat-option value="bungalow">bungalow</mat-option>
+                        <mat-option value="flat">flat</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label>Min Price</mat-label>
                     <mat-select [(ngModel)]="searchForm.minPrice"  [ngModelOptions]="{standalone: true}">
-                        <mat-option value="100000">100,000</mat-option>
-                        <mat-option value="200000">200,000</mat-option>
+                        <mat-option value="100000">100000</mat-option>
+                        <mat-option value="200000">200000</mat-option>
                         <mat-option value="300000">300,000</mat-option>
                         <mat-option value="400000">400,000</mat-option>
                         <mat-option value="500000">500,000</mat-option>

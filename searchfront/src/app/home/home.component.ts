@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchFormComponent } from '../search-form/search-form.component'
 import { SearchResultsComponent } from '../search-results/search-results.component'
@@ -8,6 +8,7 @@ import { MapComponent } from '../map/map.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
 import { SearchForm } from '../model/SearchForm';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ import { SearchForm } from '../model/SearchForm';
   providers: [PropertyService],
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent { 
+export class HomeComponent implements OnInit{ 
 
   
   results: PropertyResults = new PropertyResults();
@@ -28,15 +29,40 @@ export class HomeComponent {
 
   minPrice: number = 0;
 
-  constructor( private propertyService: PropertyService){}
 
+  constructor( private propertyService: PropertyService, private route: ActivatedRoute){}
+  
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.searchForm.type = params.get('type')!;
+      this.searchForm.minPrice = params.get('minPrice')!;
+      this.searchForm.bedrooms = params.get('bedrooms')!;
+      console.log("init")
+      // console.log(this.propertyId);
+      // this.propertyDetailService.getDetail(this.propertyId).subscribe((property: Property) =>{
+      //   this.property = property;
+      // });
+      // let view: View = new View();
+      // this.analyticsService.view(view).subscribe();
+      this.search();
+    });
+    
+  }
 
-  propertySearch(searchForm: SearchForm,  pageNo: number) {
-    this.searchForm = searchForm;
-    this.propertyService.getProperties(searchForm, pageNo).subscribe( (propertyResults: PropertyResults) => {
+  search(){
+    this.propertyService.getProperties(this.searchForm, 0).subscribe( (propertyResults: PropertyResults) => {
+      console.log("---" )
+
       this.totalResults = propertyResults.totalResults;
       this.results = propertyResults;
     })
+  }
+
+
+  propertySearch(searchForm: SearchForm,  pageNo: number) {
+    this.search();
+    this.searchForm = searchForm;
+    
   }
 
   getServerData(event:PageEvent) {
