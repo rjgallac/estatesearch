@@ -1,6 +1,26 @@
 <mat-card>
     <mat-card-content>
         <form (ngSubmit)="onSubmit()" class="container">
+
+            <mat-form-field class="form-element">
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="property.type"  [ngModelOptions]="{standalone: true}">
+                    <mat-option value="rent">Rent</mat-option>
+                    <mat-option value="buy">Buy</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="property.propertyType"  [ngModelOptions]="{standalone: true}">
+                    <mat-option value="terraced">terraced</mat-option>
+                    <mat-option value="detached">detached</mat-option>
+                    <mat-option value="semidetached">semi detached</mat-option>
+                    <mat-option value="bungalow">bungalow</mat-option>
+                    <mat-option value="flat">flat</mat-option>
+                </mat-select>
+            </mat-form-field>
+
             <mat-form-field class="form-element">
                 <label for="name">Desc: </label>
                 <input matInput id="name" [(ngModel)]="property.description" placeholder="name" [ngModelOptions]="{standalone: true}">

@@ -49,8 +49,8 @@ export class PropertyDetailComponent implements OnInit{
     }
   }
 
-  sendToSearch() {
-    this.http.get('http://localhost:8082/propertyinfo/sendToSearch/'+ this.property.id).subscribe();
+  sendToSearch(propertyId: number) {
+    this.http.get('http://localhost:8082/propertyinfo/sendToSearch/'+ propertyId).subscribe();
   }
 
   deleteFromSearch() {

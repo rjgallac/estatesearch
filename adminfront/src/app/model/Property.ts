@@ -2,6 +2,8 @@ import { Image } from './Image'
 
 export class Property {
     id: number = 0;
+    type: string = "";
+    propertyType: string = "";
     address: string = "";
     addressId: string = "";
     bathrooms: number = 0;

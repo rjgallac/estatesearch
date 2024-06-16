@@ -13,21 +13,21 @@ export class PropertyService {
   constructor(private http: HttpClient) { }
 
   getProperties(pageNo: number): Observable<PropertyResults> {
-    return this.http.get<PropertyResults>('http://localhost:8080/propertyinfo?pageNo=' + pageNo );  
+    return this.http.get<PropertyResults>('http://localhost:8082/propertyinfo?pageNo=' + pageNo );  
   }
 
   addProperty(property: Property): Observable<Property> {
-    return this.http.post<Property>('http://localhost:8080/propertyinfo', property);
+    return this.http.post<Property>('http://localhost:8082/propertyinfo', property);
   }
 
   getDashboard(): Observable<Dashboard> {
     let options = {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
     };
-    return this.http.get<Dashboard>('http://localhost:8080/dashboard', options);
+    return this.http.get<Dashboard>('http://localhost:8082/dashboard', options);
   }
 
   getProperty(propertyId: number): Observable<Property> {
-    return this.http.get<Property>('http://localhost:8080/propertyinfo/' + propertyId)
+    return this.http.get<Property>('http://localhost:8082/propertyinfo/' + propertyId)
   }
 }
