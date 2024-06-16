@@ -8,7 +8,7 @@ import { MapComponent } from '../map/map.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
 import { SearchForm } from '../model/SearchForm';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,43 +30,23 @@ export class HomeComponent implements OnInit{
   minPrice: number = 0;
 
 
-  constructor( private propertyService: PropertyService, private route: ActivatedRoute){}
+  constructor( private propertyService: PropertyService, private route: ActivatedRoute, private router: Router){}
   
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.searchForm.type = params.get('type')!;
-      this.searchForm.minPrice = params.get('minPrice')!;
-      this.searchForm.bedrooms = params.get('bedrooms')!;
-      console.log("init")
-      // console.log(this.propertyId);
-      // this.propertyDetailService.getDetail(this.propertyId).subscribe((property: Property) =>{
-      //   this.property = property;
-      // });
-      // let view: View = new View();
-      // this.analyticsService.view(view).subscribe();
-      this.search();
-    });
-    
-  }
-
-  search(){
-    this.propertyService.getProperties(this.searchForm, 0).subscribe( (propertyResults: PropertyResults) => {
-      console.log("---" )
-
-      this.totalResults = propertyResults.totalResults;
-      this.results = propertyResults;
-    })
-  }
-
+  ngOnInit(): void {}
 
   propertySearch(searchForm: SearchForm,  pageNo: number) {
-    this.search();
+    this.router.navigate(["search"], {
+      queryParams: {
+        type: this.searchForm.type,
+        houseType: this.searchForm.houseType,
+        minPrice: this.searchForm.minPrice,
+        maxPrice: this.searchForm.maxPrice,
+        bedrooms: this.searchForm.bedrooms,
+        terms: this.searchForm.terms
+      },
+      skipLocationChange: false
+    })
     this.searchForm = searchForm;
     
   }
-
-  getServerData(event:PageEvent) {
-    this.propertySearch(this.searchForm, event?.pageIndex);
-  }
-
 }

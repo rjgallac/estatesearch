@@ -8,8 +8,6 @@ import {MatCardModule} from '@angular/material/card'
 import { SearchForm } from '../model/SearchForm';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { merge } from 'rxjs';
-
 
 @Component({
   selector: 'app-search-form',
@@ -24,57 +22,58 @@ export class SearchFormComponent implements OnInit{
   @Output('propertySearch')
   propertySearch: EventEmitter<SearchForm> = new EventEmitter<SearchForm>();
 
-
-
   constructor(private router: Router, private route: ActivatedRoute){}
 
   @Input('searchForm')
   searchForm: SearchForm = new SearchForm();
 
   ngOnInit(): void {
-    // this.route.paramMap.subscribe(params => {
-    //   this.searchForm.type = params.get('type')!;
-    //   this.searchForm.minPrice = Number(params.get('minPrice')!);
-    //   this.searchForm.bedrooms = Number(params.get('bedrooms')!);
-    //   this.searchForm.type = params.get('type')!;
-    //   console.log("init")
-    //   // console.log(this.propertyId);
-    //   // this.propertyDetailService.getDetail(this.propertyId).subscribe((property: Property) =>{
-    //   //   this.property = property;
-    //   // });
-    //   // let view: View = new View();
-    //   // view.propertyId = this.propertyId;
-    //   // this.analyticsService.view(view).subscribe();
-    // });
-
     this.searchForm.type = this.route.snapshot.queryParamMap.get('type')!;
-    this.searchForm.houseType = this.route.snapshot.queryParamMap.get('houseType')!;
-    this.searchForm.bedrooms = this.route.snapshot.queryParamMap.get('bedrooms')!;
+    if(this.route.snapshot.queryParamMap.get('houseType') != null) {
+      this.searchForm.houseType = this.route.snapshot.queryParamMap.get('houseType')!;
+    }
+    if(this.route.snapshot.queryParamMap.get('bedrooms') != null) {
+      this.searchForm.bedrooms = this.route.snapshot.queryParamMap.get('bedrooms')!;
+    }
     this.searchForm.type = this.route.snapshot.queryParamMap.get('type')!;
-    this.searchForm.minPrice = this.route.snapshot.queryParamMap.get('minPrice')!;
-    this.searchForm.terms = this.route.snapshot.queryParamMap.get('terms')!;
-
-    console.log(this.searchForm.minPrice)
-    this.propertySearch.emit(this.searchForm) 
-
+    if(this.route.snapshot.queryParamMap.get('minPrice') != null) {
+      this.searchForm.minPrice = this.route.snapshot.queryParamMap.get('minPrice')!;
+    }
+    if(this.route.snapshot.queryParamMap.get('terms') !== null) {
+      this.searchForm.terms = this.route.snapshot.queryParamMap.get('terms')!;
+    }
+    this.propertySearch.emit(this.searchForm);
   }
 
   onSubmit() { 
-    console.log("nav")
-    this.router.navigate([""], {
-      queryParams: {
-        type: this.searchForm.type,
-        houseType: this.searchForm.houseType,
-        minPrice: this.searchForm.minPrice,
-        maxPrice: this.searchForm.maxPrice,
-        bedrooms: this.searchForm.bedrooms,
-        terms: this.searchForm.terms
-      },
-      skipLocationChange: false
-    })
-    console.log("HERE")
-    this.propertySearch.emit(this.searchForm) 
-
+    // if on search page perform search 
+    if(this.router.url.startsWith('/search')) {
+      this.propertySearch.emit(this.searchForm);
+      this.router.navigate(["search"], {
+        queryParams: {
+          type: this.searchForm.type,
+          houseType: this.searchForm.houseType,
+          minPrice: this.searchForm.minPrice,
+          maxPrice: this.searchForm.maxPrice,
+          bedrooms: this.searchForm.bedrooms,
+          terms: this.searchForm.terms
+        },
+        skipLocationChange: false
+      })
+    } else {
+      // if on home page navigate away
+      this.router.navigate(["search"], {
+        queryParams: {
+          type: this.searchForm.type,
+          houseType: this.searchForm.houseType,
+          minPrice: this.searchForm.minPrice,
+          maxPrice: this.searchForm.maxPrice,
+          bedrooms: this.searchForm.bedrooms,
+          terms: this.searchForm.terms
+        },
+        skipLocationChange: false
+      })
+    }
   }
 
 }

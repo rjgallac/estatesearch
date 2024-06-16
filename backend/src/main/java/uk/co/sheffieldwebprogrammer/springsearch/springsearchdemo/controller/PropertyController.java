@@ -12,6 +12,7 @@ import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.model.Property
 import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.model.PropertyResults;
 import uk.co.sheffieldwebprogrammer.springsearch.springsearchdemo.repository.PropertyRepository;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -87,8 +88,8 @@ public class PropertyController {
     @RequestMapping("searchquery")
     @GetMapping
     public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo,
-                                                    @RequestParam(value = "minPrice", required = false) long minPrice,
-                                                    @RequestParam(value = "bedrooms", required = false) int bedrooms) {
+                                                    @Nullable @RequestParam(value = "minPrice", required = false) long minPrice,
+                                                    @Nullable @RequestParam(value = "bedrooms", required = false) int bedrooms) {
 //        Sort sortBy = Sort.by(Sort.Order.asc("description"));
         Pageable pageable = PageRequest.of(pageNo,10);
         PropertyResults propertyResults = new PropertyResults();
