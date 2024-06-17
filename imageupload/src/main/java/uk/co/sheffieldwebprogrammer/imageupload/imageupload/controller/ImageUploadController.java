@@ -21,6 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/imageupload")
 @Slf4j
+@CrossOrigin
 public class ImageUploadController {
 
     @Autowired
@@ -63,8 +64,6 @@ public class ImageUploadController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
 
         try {
 

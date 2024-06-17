@@ -24,6 +24,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/propertyinfo")
 @Slf4j
+@CrossOrigin
 public class PropertyController {
 
     @Autowired
@@ -39,19 +40,18 @@ public class PropertyController {
     private PropertyMapper propertyMapper;
 
     @GetMapping("/{id}")
-    @CrossOrigin
     public ResponseEntity<PropertyDto> getById(@PathVariable("id") long id) {
         Optional<Property> byId = propertyService.findById(id);
         PropertyDto dto = null;
         if(byId.isPresent()) {
             dto = propertyMapper.toDto(byId.get());
         }
-        try {
-            List<ImageUploadDto> images = imageService.getImages(id);
-            dto.setImages(images);
-        }catch (Exception e) {
-            log.error(e.getMessage());
-        }
+//        try {
+//            List<ImageUploadDto> images = imageService.getImages(id);
+//            dto.setImages(images);
+//        }catch (Exception e) {
+//            log.error(e.getMessage());
+//        }
         return ResponseEntity.ok(dto);
     }
 
@@ -73,31 +73,31 @@ public class PropertyController {
 
     }
 
-    @GetMapping("/sendToSearch/{propertyId}")
-    @CrossOrigin
-    public void sendToSearch(@PathVariable("propertyId") long propertyId) {
-        Optional<Property> byId = propertyService.findById(propertyId);
-        List<ImageUploadDto> images = new ArrayList<>();
-        try {
-            images = imageService.getImages(propertyId);
-        }catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        if(byId.isPresent()) {
-            Property property = byId.get();
-            PropertyDto dto = propertyMapper.toDto(property);
-            try {
-                dto.setImage(images.getFirst().getImageSmallFilename());
-            }catch (Exception e) {
-                log.error(e.getMessage());
-            }
-            String s = searchService.sendToSearch(dto);
-            property.setSearchId(s);
-            propertyService.save(property);
-
-        }
-
-    }
+//    @GetMapping("/sendToSearch/{propertyId}")
+//    @CrossOrigin
+//    public void sendToSearch(@PathVariable("propertyId") long propertyId) {
+//        Optional<Property> byId = propertyService.findById(propertyId);
+//        List<ImageUploadDto> images = new ArrayList<>();
+//        try {
+//            images = imageService.getImages(propertyId);
+//        }catch (Exception e) {
+//            log.error(e.getMessage());
+//        }
+//        if(byId.isPresent()) {
+//            Property property = byId.get();
+//            PropertyDto dto = propertyMapper.toDto(property);
+//            try {
+//                dto.setImage(images.getFirst().getImageSmallFilename());
+//            }catch (Exception e) {
+//                log.error(e.getMessage());
+//            }
+//            String s = searchService.sendToSearch(dto);
+//            property.setSearchId(s);
+//            propertyService.save(property);
+//
+//        }
+//
+//    }
 
     @DeleteMapping("/{id}")
     @CrossOrigin
@@ -112,22 +112,21 @@ public class PropertyController {
 
     }
 
-    @DeleteMapping("/delete-from-search/{id}")
-    @CrossOrigin
-    public void deleteFromSearch(@PathVariable("id") long id) {
-        Optional<Property> byId = propertyService.findById(id);
-        if(byId.isPresent()) {
-            Property property = byId.get();
-            searchService.delete(property.getSearchId());
+//    @DeleteMapping("/delete-from-search/{id}")
+//    @CrossOrigin
+//    public void deleteFromSearch(@PathVariable("id") long id) {
+//        Optional<Property> byId = propertyService.findById(id);
+//        if(byId.isPresent()) {
+//            Property property = byId.get();
+//            searchService.delete(property.getSearchId());
+//
+//        }
+//
+//    }
 
-        }
-
-    }
-
-
-
+//
+//
     @GetMapping
-    @CrossOrigin
     public ResponseEntity<PropertyResults> findPage(@RequestParam("pageNo") int pageNo) {
         Sort sortBy = Sort.by(Sort.Order.asc("description"));
         Pageable pageable = PageRequest.of(pageNo,10, sortBy);

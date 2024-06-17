@@ -12,6 +12,7 @@ export class PropertyDetailService {
   constructor(private http: HttpClient) { }
 
   getDetail(id: number): Observable<Property> {
+    this.http.get<Property>('http://localhost:8084/imageupload/' + id).subscribe();
     return this.http.get<Property>('http://localhost:8082/propertyinfo/' + id);  
   }
 }
