@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @RequestMapping("search/property")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:36479", methods = {RequestMethod.POST, RequestMethod.OPTIONS},exposedHeaders = "*", allowedHeaders = "*")
 public class PropertyController {
 
     @Autowired
@@ -50,6 +50,7 @@ public class PropertyController {
     }
 
     @PostMapping
+    @CrossOrigin
     public String add(@RequestBody PropertyDto propertyDto) {
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());

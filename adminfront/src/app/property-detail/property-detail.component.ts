@@ -4,6 +4,7 @@ import { Property } from '../model/Property';
 import { PropertyService } from '../property.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { PropertyDto } from '../model/PropertyDto';
 
 @Component({
   selector: 'app-property-detail',
@@ -49,8 +50,17 @@ export class PropertyDetailComponent implements OnInit{
     }
   }
 
-  sendToSearch(propertyId: number) {
-    this.http.get('http://localhost:8082/propertyinfo/sendToSearch/'+ propertyId).subscribe();
+  sendToSearch(property: Property) {
+    let propertyDto: PropertyDto = new PropertyDto();
+    propertyDto.description = property.description;
+    propertyDto.bathrooms = property.bathrooms;
+    propertyDto.bedrooms = property.bathrooms;
+    propertyDto.price = property.price;
+    propertyDto.address = property.address;
+    propertyDto.propertyType = property.propertyType;
+    propertyDto.type = property.type;
+    // need to compose dto here and send direct to search
+    this.http.post('http://localhost:8090/search/property/', property ).subscribe();
   }
 
   deleteFromSearch() {
