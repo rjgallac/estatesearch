@@ -21,11 +21,11 @@ export class PropertyService {
   }
 
   addProperty(property: Property): Observable<Property> {
-     let options = {
-          headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-          ,withCredentials: true
-        };
-    return this.http.post<Property>('http://localhost:8080/search/property/post', property, options);
+         let options = {
+              headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+              ,withCredentials: true
+            };
+    return this.http.post<Property>('http://localhost:8080/propertyinfo/propertyinfo', property, options);
   }
 
   getDashboard(): Observable<Dashboard> {

@@ -34,7 +34,9 @@ public class SecurityConfig {
 
         serverHttpSecurity
                 .authorizeExchange( exchange -> exchange
-                        .pathMatchers("/propertyinfo/**", "/search/**", "/userservice/**", "/analyticsservice/**", "/dashboard/**")
+                        .pathMatchers("/search/**")
+                        .permitAll()
+                        .pathMatchers("/propertyinfo/**", "/userservice/**", "/analyticsservice/**", "/dashboard/**")
                         .permitAll()
 //                        .pathMatchers("/dashboard").hasAuthority("ROLE_robadmin")
 //                        .pathMatchers("/dashboard").authenticated()

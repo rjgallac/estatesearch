@@ -16,8 +16,8 @@ export class PropertyService {
 
   getProperties(searchForm: SearchForm, pageNo: number): Observable<PropertyResults> {
       let options = {
-              headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
-              ,withCredentials: true
+//               headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+//               ,withCredentials: true
             };
 
     return this.http.get<PropertyResults>('http://localhost:8080/search/property/searchquery?query=' + searchForm.terms
