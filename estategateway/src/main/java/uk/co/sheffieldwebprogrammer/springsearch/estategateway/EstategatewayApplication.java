@@ -15,22 +15,7 @@ import java.util.Collections;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class EstategatewayApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(EstategatewayApplication.class, args);
 	}
-
-
-	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-		configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-		configuration.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
-		configuration.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
-
 }

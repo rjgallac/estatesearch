@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Property } from '../model/Property';
 import { PropertyService } from '../property.service';
@@ -17,7 +17,7 @@ import { PropertyDto } from '../model/PropertyDto';
 export class PropertyDetailComponent implements OnInit{
 
   fileName = '';
-  
+
   property: Property = new Property();
 
   propertyId: number = 0;
@@ -33,7 +33,7 @@ export class PropertyDetailComponent implements OnInit{
       this.getProperty(this.propertyId);
     });
 
-   
+
   }
 
 
@@ -60,7 +60,11 @@ export class PropertyDetailComponent implements OnInit{
     propertyDto.propertyType = property.propertyType;
     propertyDto.type = property.type;
     // need to compose dto here and send direct to search
-    this.http.post('http://localhost:8090/search/property/', property ).subscribe();
+     let options = {
+              headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+              ,withCredentials: true
+            };
+    this.http.post('http://localhost:8080/search/property/post', property, options ).subscribe();
   }
 
   deleteFromSearch() {

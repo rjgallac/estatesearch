@@ -1,0 +1,57 @@
+spring:
+    application:
+        name: estategateway
+    cloud:
+        gateway:
+            default-filters:
+                - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+            globalcors:
+                add-to-simple-url-handler-mapping: true
+                corsConfigurations:
+                    '[/**]':
+                        allowCredentials: true
+                        allowedOrigins: "http://localhost:4200,http://localhost:4300"
+                        allowedMethods: "*"
+                        allowedHeaders: "*"
+            routes:
+                - id: estateinfobackend
+                  uri: lb://estateinfobackend
+                  predicates:
+                    - Path=/propertyinfo/**
+                - id: estatesearch
+                  uri: lb://estatesearch
+                  predicates: Path=/search/**
+    security:
+        oauth2:
+            client:
+                registration:
+                    keycloak:
+                        client-id: login-app
+                        scope: openid
+                        authorization-grant-type: authorization_code
+                provider:
+                    keycloak:
+                        user-name-attribute: preferred_username
+                        issuer-uri: http://localhost:8181/realms/SpringbootKeycloak
+            resourceserver:
+                jwt:
+                    issuer-uri: http://localhost:8181/realms/SpringbootKeycloak
+
+eureka:
+    client.serviceUrl.defaultZone: http://127.0.0.1:8761/eureka
+    instance:
+        hostname: localhost
+        prefer-ip-address: true
+
+logging:
+    level:
+        root: INFO
+        org.springframework.cloud.gateway.route.RouteDefinition.Locator: INFO
+        org.springframework.cloud.gateway: TRACE
+        org:
+            springframework:
+                security: DEBUG
+
+
+
+

@@ -44,4 +44,10 @@ Eureka
 http://localhost:8761/
 
 Keycloak
+docker run -p 8181:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.4 start-dev
+
+add realm "SpringbootKeycloak"
+add client "login-app" with root url "http://localhost:4200"
+add user - note , need to add names and email or you'll get 400 - account not fully setup.
+
 http://localhost:8181/

@@ -18,7 +18,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @RequestMapping("search/property")
-@CrossOrigin(origins = "http://localhost:36479", methods = {RequestMethod.POST, RequestMethod.OPTIONS},exposedHeaders = "*", allowedHeaders = "*")
 public class PropertyController {
 
     @Autowired
@@ -50,7 +49,7 @@ public class PropertyController {
     }
 
     @PostMapping
-    @CrossOrigin
+    @RequestMapping("/post")
     public String add(@RequestBody PropertyDto propertyDto) {
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());
@@ -65,6 +64,7 @@ public class PropertyController {
         return savedProperty.getAddressId();
 
     }
+
 
     @RequestMapping("/all")
     @GetMapping
@@ -90,6 +90,7 @@ public class PropertyController {
 
     @RequestMapping("searchquery")
     @GetMapping
+//    @CrossOrigin(origins = "http://localhost:61466", methods = {RequestMethod.GET},exposedHeaders = "*", allowedHeaders = "*")
     public ResponseEntity<PropertyResults> getProps(@RequestParam("query") String query, @RequestParam("pageNo") int pageNo,
                                                     @Nullable @RequestParam(value = "minPrice", required = false) long minPrice,
                                                     @Nullable @RequestParam(value = "bedrooms", required = false) int bedrooms,

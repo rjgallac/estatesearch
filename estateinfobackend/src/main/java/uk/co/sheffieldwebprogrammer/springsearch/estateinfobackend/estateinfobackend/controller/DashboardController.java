@@ -10,14 +10,13 @@ import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobac
 import uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.service.PropertyService;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/propertyinfo/dashboard")
 public class DashboardController {
 
     @Autowired
     private PropertyService propertyService;
 
     @GetMapping
-//    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<DashboardDto> getDashboard() {
         DashboardDto dashboardDto = new DashboardDto();
         dashboardDto.setNoProperties(propertyService.countProperties());

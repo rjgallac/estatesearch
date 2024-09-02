@@ -15,12 +15,17 @@ export class PropertyService {
   constructor(private http: HttpClient) { }
 
   getProperties(searchForm: SearchForm, pageNo: number): Observable<PropertyResults> {
-    return this.http.get<PropertyResults>('http://localhost:8090/search/property/searchquery?query=' + searchForm.terms  
-      + '&pageNo=' + pageNo 
+      let options = {
+              headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
+              ,withCredentials: true
+            };
+
+    return this.http.get<PropertyResults>('http://localhost:8080/search/property/searchquery?query=' + searchForm.terms
+      + '&pageNo=' + pageNo
       + '&type=' + searchForm.type
       + '&propertyType=' + searchForm.houseType
-      + '&minPrice=' + searchForm.minPrice 
+      + '&minPrice=' + searchForm.minPrice
       + '&maxPrice=' + searchForm.maxPrice
-      + '&bedrooms=' + searchForm.bedrooms);  
+      + '&bedrooms=' + searchForm.bedrooms, options);
   }
 }

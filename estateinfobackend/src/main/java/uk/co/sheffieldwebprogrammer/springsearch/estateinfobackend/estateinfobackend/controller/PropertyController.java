@@ -22,9 +22,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/propertyinfo")
+@RequestMapping("/propertyinfo/propertyinfo")
 @Slf4j
-@CrossOrigin
 public class PropertyController {
 
     @Autowired
@@ -57,7 +56,6 @@ public class PropertyController {
 
 
     @PostMapping
-    @CrossOrigin
     public ResponseEntity<PropertyDto> addProperty(@RequestBody PropertyDto propertyDto) {
         Property property = new Property();
         property.setAddress(propertyDto.getAddress());
@@ -100,7 +98,6 @@ public class PropertyController {
 //    }
 
     @DeleteMapping("/{id}")
-    @CrossOrigin
     public void delete(@PathVariable("id") long id) {
         Optional<Property> byId = propertyService.findById(id);
         if(byId.isPresent()) {

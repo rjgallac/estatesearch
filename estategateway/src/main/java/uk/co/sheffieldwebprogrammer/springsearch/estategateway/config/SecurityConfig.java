@@ -34,10 +34,9 @@ public class SecurityConfig {
 
         serverHttpSecurity
                 .authorizeExchange( exchange -> exchange
-
-                        .pathMatchers("/propertyinfo/**", "/search/**", "/userservice/**", "/analyticsservice/**")
+                        .pathMatchers("/propertyinfo/**", "/search/**", "/userservice/**", "/analyticsservice/**", "/dashboard/**")
                         .permitAll()
-                        .pathMatchers("/dashboard").hasAuthority("ROLE_admin")
+//                        .pathMatchers("/dashboard").hasAuthority("ROLE_robadmin")
 //                        .pathMatchers("/dashboard").authenticated()
                         .anyExchange()
                         .authenticated())
@@ -47,7 +46,7 @@ public class SecurityConfig {
 
                 );
         serverHttpSecurity.csrf(crsf -> crsf.disable());
-        serverHttpSecurity.cors(cors -> cors.disable());
+//        serverHttpSecurity.cors(cors -> cors.disable());
 
         return serverHttpSecurity.build();
     }
