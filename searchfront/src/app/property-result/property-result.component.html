@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card"  [routerLink]="['/detail-view/', property.propertyId]">
     <mat-card-header>
         <!-- <div mat-card-avatar style="background-image: url('http://localhost:81/{{property.image}}.jpg');" class="example-header-image"></div> -->
         <mat-card-title><a [routerLink]="['/detail-view/', property.propertyId]">{{property.address}}</a></mat-card-title>
@@ -8,6 +8,7 @@
     <!-- <img mat-card-image src="http://localhost:81/{{property.image}}.jpg" alt="Home"> -->
 
     <mat-card-content>
+
         <p>
         address: {{property.address}} <br />
         price: {{property.price}}
@@ -19,5 +20,5 @@
         <button mat-raised-button color="accent">SHORLIST</button>
 
     </mat-card-actions>
-    
+
 </mat-card>

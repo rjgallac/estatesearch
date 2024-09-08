@@ -59,6 +59,7 @@ export class PropertyDetailComponent implements OnInit{
     propertyDto.address = property.address;
     propertyDto.propertyType = property.propertyType;
     propertyDto.type = property.type;
+    propertyDto.propertyId = property.id;
     // need to compose dto here and send direct to search
      let options = {
               headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -68,12 +69,12 @@ export class PropertyDetailComponent implements OnInit{
   }
 
   deleteFromSearch() {
-    this.http.delete('http://localhost:8082/propertyinfo/delete-from-search/'+ this.property.id).subscribe();
+    this.http.delete('http://localhost:8080/propertyinfo/propertyinfo/delete-from-search/'+ this.property.id).subscribe();
 
   }
 
   delete() {
-    this.http.delete('http://localhost:8082/propertyinfo/'+ this.property.id).subscribe();
+    this.http.delete('http://localhost:8080/propertyinfo/propertyinfo/'+ this.property.id).subscribe();
 
   }
 

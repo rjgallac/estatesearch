@@ -9,8 +9,9 @@ export class Property {
     bathrooms: number = 0;
     bedrooms: number = 0;
     datePosted: string = "";
-    description: string = ""; 
+    description: string = "";
     price: number = 0;
     image: string = "";
+    searchId: string = "";
     images: Array<Image> = new Array();
 }

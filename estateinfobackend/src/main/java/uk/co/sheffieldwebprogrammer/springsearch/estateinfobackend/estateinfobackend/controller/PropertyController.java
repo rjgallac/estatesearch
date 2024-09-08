@@ -65,8 +65,9 @@ public class PropertyController {
         property.setImage(propertyDto.getImage());
         property.setPropertyType(propertyDto.getPropertyType());
         property.setType(propertyDto.getType());
+        String searchID = searchService.sendToSearch(propertyDto);
+        property.setSearchId(searchID);
         Property save = propertyService.save(property);
-        propertyDto.setId(save.getId());
         return ResponseEntity.ok(propertyDto);
 
     }
@@ -109,17 +110,17 @@ public class PropertyController {
 
     }
 
-//    @DeleteMapping("/delete-from-search/{id}")
+    @DeleteMapping("/delete-from-search/{id}")
 //    @CrossOrigin
-//    public void deleteFromSearch(@PathVariable("id") long id) {
-//        Optional<Property> byId = propertyService.findById(id);
-//        if(byId.isPresent()) {
-//            Property property = byId.get();
-//            searchService.delete(property.getSearchId());
-//
-//        }
-//
-//    }
+    public void deleteFromSearch(@PathVariable("id") long id) {
+        Optional<Property> byId = propertyService.findById(id);
+        if(byId.isPresent()) {
+            Property property = byId.get();
+            searchService.delete(property.getSearchId());
+
+        }
+
+    }
 
 //
 //

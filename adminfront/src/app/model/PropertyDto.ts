@@ -1,5 +1,6 @@
 
 export class PropertyDto {
+    propertyId: number = 0;
     type: string = "";
     propertyType: string = "";
     address: string = "";
@@ -7,7 +8,7 @@ export class PropertyDto {
     bathrooms: number = 0;
     bedrooms: number = 0;
     datePosted: string = "";
-    description: string = ""; 
+    description: string = "";
     price: number = 0;
     image: string = "";
 }

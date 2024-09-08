@@ -16,6 +16,7 @@ public class PropertyMapper {
                 .description(property.getDescription())
                 .type(property.getType())
                 .propertyType(property.getPropertyType())
+                .searchId(property.getSearchId())
                 .build();
     }
 

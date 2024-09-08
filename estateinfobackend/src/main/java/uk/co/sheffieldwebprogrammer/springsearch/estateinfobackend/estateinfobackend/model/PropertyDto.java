@@ -21,5 +21,6 @@ public class PropertyDto {
     private int bathrooms;
     private String image;
     private double[] locationAsArray;
+    private String searchId;
     List<ImageUploadDto> images;
 }

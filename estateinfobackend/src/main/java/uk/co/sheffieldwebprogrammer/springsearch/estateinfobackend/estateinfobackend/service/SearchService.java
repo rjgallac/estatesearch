@@ -14,7 +14,7 @@ public class SearchService {
 
     public String sendToSearch(PropertyDto propertyDto) {
         try {
-            ResponseEntity<String> stringResponseEntity = restTemplate.postForEntity("http://127.0.0.1:8090/search/property", propertyDto, String.class);
+            ResponseEntity<String> stringResponseEntity = restTemplate.postForEntity("http://127.0.0.1:8090/search/property/post", propertyDto, String.class);
             return stringResponseEntity.getBody();
         } catch(Exception e){
             log.error(e.getMessage());
@@ -23,7 +23,7 @@ public class SearchService {
     }
 
     public void delete(String id) {
-        restTemplate.delete("http://127.0.0.1:8080/property/" + id);
+        restTemplate.delete("http://127.0.0.1:8090/search/property/" + id);
 
     }
 }

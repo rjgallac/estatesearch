@@ -28,6 +28,17 @@ http://localhost:8080/property/all
 
 curl -X DELETE "localhost:9200/property/_doc/lQFwto8Bglzi8IgTrkHi"
 
+delete all
+```declarative
+curl -XPOST 'localhost:9200/property/_delete_by_query?conflicts=proceed&pretty' -H 'Content-Type: application/json' -d'
+{
+"query": {
+"match_all": {}
+}
+}'
+```
+
 ## docker instructions
 docker build -t rjgallac/searchapp .
 docker run -p8080:8080 --network host rjgallac/searchapp
+
