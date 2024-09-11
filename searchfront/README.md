@@ -31,4 +31,4 @@ docker build -t rjgallac/estatesearchfront .
 docker run -p 80:80  --network host rjgallac/estatesearchfront
 
 
-docker run --name docker-nginx -v ~/docker-nginx/html:/usr/share/nginx/html nginx -p81:80 nginx
+docker run --name docker-nginx -p81:80 -v $PWD:/usr/share/nginx/html nginx nginx

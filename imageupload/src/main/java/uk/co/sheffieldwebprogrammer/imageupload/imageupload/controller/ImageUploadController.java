@@ -34,13 +34,13 @@ public class ImageUploadController {
         UUID uuid = UUID.randomUUID();
 
         String filename = propertyId + "_large_" + uuid;
-        String filePath = "/home/rob/docker-nginx/html" + File.separator + filename + ".jpg";
+        String filePath = "d:\\docker-nginx\\html\\" + File.separator + filename + ".jpg";
         log.info("image upload for propertyId {}", propertyId);
 
         String fileUploadStatus;
 
         String thumbFilename = propertyId + "_thumb_" + uuid;
-        String filePathThumb = "/home/rob/docker-nginx/html" + File.separator + thumbFilename + ".jpg";
+        String filePathThumb = "d:\\docker-nginx\\html\\" + File.separator + thumbFilename + ".jpg";
 
         try {
             ByteArrayOutputStream thumbnail = createThumbnail(file, 200);
@@ -97,14 +97,14 @@ public class ImageUploadController {
         Optional<ImageUpload> byId = imageRepository.findById(id);
         if(byId.isPresent()) {
             ImageUpload imageUpload = byId.get();
-            File myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageSmallFilename() + ".jpg");
+            File myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageSmallFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
                 System.out.println("Failed to delete the file.");
             }
 
-            myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageLargeFilename() + ".jpg");
+            myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageLargeFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
@@ -120,14 +120,14 @@ public class ImageUploadController {
     public void delete(@PathVariable("id") long id) {
         List<ImageUpload> byPropertyId = imageRepository.findByPropertyId(id);
         for (ImageUpload imageUpload : byPropertyId) {
-            File myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageSmallFilename() + ".jpg");
+            File myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageSmallFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
                 System.out.println("Failed to delete the file.");
             }
 
-            myObj = new File("/home/rob/docker-nginx/html/" + imageUpload.getImageLargeFilename() + ".jpg");
+            myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageLargeFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {

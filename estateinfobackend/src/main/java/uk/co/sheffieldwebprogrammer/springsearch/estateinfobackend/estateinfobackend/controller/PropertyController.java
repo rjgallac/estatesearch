@@ -45,12 +45,12 @@ public class PropertyController {
         if(byId.isPresent()) {
             dto = propertyMapper.toDto(byId.get());
         }
-//        try {
-//            List<ImageUploadDto> images = imageService.getImages(id);
-//            dto.setImages(images);
-//        }catch (Exception e) {
-//            log.error(e.getMessage());
-//        }
+        try {
+            List<ImageUploadDto> images = imageService.getImages(id);
+            dto.setImages(images);
+        }catch (Exception e) {
+            log.error(e.getMessage());
+        }
         return ResponseEntity.ok(dto);
     }
 
@@ -72,31 +72,31 @@ public class PropertyController {
 
     }
 
-//    @GetMapping("/sendToSearch/{propertyId}")
+    @PostMapping("/sendToSearch/{propertyId}")
 //    @CrossOrigin
-//    public void sendToSearch(@PathVariable("propertyId") long propertyId) {
-//        Optional<Property> byId = propertyService.findById(propertyId);
-//        List<ImageUploadDto> images = new ArrayList<>();
-//        try {
-//            images = imageService.getImages(propertyId);
-//        }catch (Exception e) {
-//            log.error(e.getMessage());
-//        }
-//        if(byId.isPresent()) {
-//            Property property = byId.get();
-//            PropertyDto dto = propertyMapper.toDto(property);
-//            try {
-//                dto.setImage(images.getFirst().getImageSmallFilename());
-//            }catch (Exception e) {
-//                log.error(e.getMessage());
-//            }
-//            String s = searchService.sendToSearch(dto);
-//            property.setSearchId(s);
-//            propertyService.save(property);
-//
-//        }
-//
-//    }
+    public void sendToSearch(@PathVariable("propertyId") long propertyId) {
+        Optional<Property> byId = propertyService.findById(propertyId);
+        List<ImageUploadDto> images = new ArrayList<>();
+        try {
+            images = imageService.getImages(propertyId);
+        }catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        if(byId.isPresent()) {
+            Property property = byId.get();
+            PropertyDto dto = propertyMapper.toDto(property);
+            try {
+                dto.setImage(images.getFirst().getImageSmallFilename());
+            }catch (Exception e) {
+                log.error(e.getMessage());
+            }
+            String s = searchService.sendToSearch(dto);
+            property.setSearchId(s);
+            propertyService.save(property);
+
+        }
+
+    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") long id) {

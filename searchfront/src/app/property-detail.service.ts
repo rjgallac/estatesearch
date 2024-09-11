@@ -13,6 +13,6 @@ export class PropertyDetailService {
 
   getDetail(id: number): Observable<Property> {
     this.http.get<Property>('http://localhost:8084/imageupload/' + id).subscribe();
-    return this.http.get<Property>('http://localhost:8082/propertyinfo/' + id);  
+    return this.http.get<Property>('http://localhost:8080/propertyinfo/propertyinfo/' + id);  
   }
 }

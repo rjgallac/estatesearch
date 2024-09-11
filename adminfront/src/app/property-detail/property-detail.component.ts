@@ -65,7 +65,7 @@ export class PropertyDetailComponent implements OnInit{
               headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
               ,withCredentials: true
             };
-    this.http.post('http://localhost:8080/search/property/post', property, options ).subscribe();
+    this.http.post('http://localhost:8080/propertyinfo/propertyinfo/sendToSearch/' + property.id, property, options ).subscribe();
   }
 
   deleteFromSearch() {

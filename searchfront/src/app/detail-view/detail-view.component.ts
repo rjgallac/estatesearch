@@ -33,6 +33,7 @@ export class DetailViewComponent implements OnInit{
       let view: View = new View();
       view.propertyId = this.propertyId;
       this.analyticsService.view(view).subscribe();
+      this.analyticsService.total().subscribe();
     });
 
   }

@@ -15,4 +15,8 @@ export class AnalyticsService {
   view(view: View): Observable<string> {
     return this.http.post<string>('http://localhost:8080/analyticsservice/analytics/view', view );  
   }
+
+  total(): Observable<string> {
+    return this.http.get<string>('http://localhost:8080/analyticsservice/analytics/total');  
+  }
 }
