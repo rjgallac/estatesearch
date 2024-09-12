@@ -33,7 +33,7 @@ export class PropertyService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))
       ,withCredentials: true
     };
-    return this.http.get<Dashboard>('http://localhost:8080/propertyinfo/dashboard', options);
+    return this.http.get<Dashboard>('http://localhost:8080/propertyinfo/propertyinfo/dashboard', options);
   }
 
   getProperty(propertyId: number): Observable<Property> {

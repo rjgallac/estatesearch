@@ -24,6 +24,11 @@ spring:
                 - id: analytics
                   uri: lb://analyticsservice
                   predicates: Path=/analyticsservice/**
+                - id: imageupload
+                  uri: lb://imageupload
+                  predicates:
+                    - Path=/imageupload/**
+                    - Path=/adminimageupload/**
     security:
         oauth2:
             client:

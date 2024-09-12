@@ -43,7 +43,7 @@ export class PropertyDetailComponent implements OnInit{
         this.fileName = file.name;
         const formData = new FormData();
         formData.append("file", file);
-        const upload$ = this.http.post("http://127.0.0.1:8084/imageupload/" + this.property.id, formData);
+        const upload$ = this.http.post("http://127.0.0.1:8080/adminimageupload/" + this.property.id, formData);
         upload$.subscribe(() =>{
           this.getProperty(this.propertyId)
         });
@@ -79,7 +79,7 @@ export class PropertyDetailComponent implements OnInit{
   }
 
   deleteImage(id: number) {
-    this.http.delete('http://localhost:8084/imageupload/'+ id).subscribe(() =>{
+    this.http.delete('http://localhost:8080/adminimageupload/'+ id).subscribe(() =>{
       this.getProperty(this.propertyId);
     });
 

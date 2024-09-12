@@ -16,13 +16,13 @@ public class ImageService {
     private ResponseEntity<List<ImageUploadDto>> exchange;
 
     public List<ImageUploadDto> getImages(long id) {
-        exchange = restTemplate.exchange("http://localhost:8084/imageupload/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<ImageUploadDto>>() {
+        exchange = restTemplate.exchange("http://localhost:8080/imageupload/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<ImageUploadDto>>() {
         });
         return exchange.getBody();
     }
 
     public void deleteAllByPropertyId(long id) {
-        restTemplate.delete("http://localhost:8084/imageupload/deletebypropertyid/" + id);
+        restTemplate.delete("http://localhost:8080/adminimageupload/deletebypropertyid/" + id);
 
     }
 }
