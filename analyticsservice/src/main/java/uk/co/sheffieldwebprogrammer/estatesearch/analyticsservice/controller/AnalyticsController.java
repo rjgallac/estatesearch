@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import uk.co.sheffieldwebprogrammer.estatesearch.analyticsservice.entity.Analytic;
 import uk.co.sheffieldwebprogrammer.estatesearch.analyticsservice.entity.SearchAnalytic;
 import uk.co.sheffieldwebprogrammer.estatesearch.analyticsservice.model.SearchRequest;
+import uk.co.sheffieldwebprogrammer.estatesearch.analyticsservice.model.TotalDto;
 import uk.co.sheffieldwebprogrammer.estatesearch.analyticsservice.model.ViewRequest;
 import uk.co.sheffieldwebprogrammer.estatesearch.analyticsservice.repository.AnalyticsRepository;
 import uk.co.sheffieldwebprogrammer.estatesearch.analyticsservice.repository.SearchAnalyticsRepository;
@@ -38,7 +39,7 @@ public class AnalyticsController {
     }
 
     @GetMapping("/total")
-    public long total(){
-        return analyticsRepository.count();
+    public TotalDto total(){
+        return TotalDto.builder().total(analyticsRepository.count()).build();
     }
 }

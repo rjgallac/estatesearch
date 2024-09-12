@@ -27,8 +27,7 @@ spring:
                 - id: imageupload
                   uri: lb://imageupload
                   predicates:
-                    - Path=/imageupload/**
-                    - Path=/adminimageupload/**
+                    - Path=/imageupload/**, /adminimageupload/**
     security:
         oauth2:
             client:
