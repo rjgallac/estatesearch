@@ -6,3 +6,5 @@ use estatesearch;
 show tables;
 select * from estatesearch;
 delete from property;
+
+docker build -t rjgallac/estateinfobackend .
