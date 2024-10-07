@@ -36,7 +36,6 @@ TODO
 - map in admin - click for lat and long
 - submit multi image on create in admin
 - add property type
-- add rent/buy
 
 ## Use
 
@@ -49,5 +48,6 @@ docker run -p 8181:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin
 add realm "SpringbootKeycloak"
 add client "login-app" with root url "http://localhost:4200"
 add user - note , need to add names and email or you'll get 400 - account not fully setup.
+dont forget to add web origins - "*"  or "http://localhost:4200" for testing purposes.
 
 http://localhost:8181/

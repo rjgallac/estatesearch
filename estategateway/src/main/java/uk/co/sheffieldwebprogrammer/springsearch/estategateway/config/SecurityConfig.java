@@ -48,7 +48,7 @@ public class SecurityConfig {
 
                 );
         serverHttpSecurity.csrf(crsf -> crsf.disable());
-//        serverHttpSecurity.cors(cors -> cors.disable());
+        serverHttpSecurity.cors(cors -> cors.disable());
 
         return serverHttpSecurity.build();
     }

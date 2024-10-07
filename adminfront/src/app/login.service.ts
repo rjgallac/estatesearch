@@ -22,6 +22,6 @@ export class LoginService {
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
   };
-    return this.http.post<Jwt>('http://localhost:8181/realms/SpringbootKeycloak/protocol/openid-connect/token', body.toString(), options );  
+    return this.http.post<Jwt>('http://keycloak:8888/realms/SpringbootKeycloak/protocol/openid-connect/token', body.toString(), options );  
   }
 }

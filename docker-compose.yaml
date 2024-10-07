@@ -32,11 +32,13 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:25.0.4
     ports:
-      - "8181:8080"
+      - "8888:8888"
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-    command: ["start-dev"]
+      KC_HOSTNAME: keycloak
+      KC_HOSTNAME_PORT: 8888
+    command: ["start-dev", "--http-port=8888"]
 
   estateinfobackenddb:
     image: mariadb:latest
