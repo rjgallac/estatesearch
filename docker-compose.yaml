@@ -58,6 +58,8 @@ services:
     ports:
       - "8084:8084"
     restart: always
+    volumes:
+      - d:/docker-nginx/html:/imagestore
 
   estateimagedb:
     image: mariadb:latest
@@ -65,3 +67,10 @@ services:
       MARIADB_DATABASE: imagedb
       MARIADB_ROOT_PASSWORD: my-secret-pw
       MYSQL_ROOT_HOST: "%"
+
+  imageshare:
+    image: rjgallac/estatenginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - d:/docker-nginx/html:/imagestore:ro

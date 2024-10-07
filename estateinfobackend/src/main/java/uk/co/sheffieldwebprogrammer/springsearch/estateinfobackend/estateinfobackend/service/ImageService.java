@@ -1,5 +1,6 @@
 package uk.co.sheffieldwebprogrammer.springsearch.estateinfobackend.estateinfobackend.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -12,17 +13,20 @@ import java.util.List;
 @Service
 public class ImageService {
 
+    @Value("${estateimage.imageservice}")
+    private String imageService;
+
     RestTemplate restTemplate = new RestTemplate();
     private ResponseEntity<List<ImageUploadDto>> exchange;
 
     public List<ImageUploadDto> getImages(long id) {
-        exchange = restTemplate.exchange("http://localhost:8080/imageupload/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<ImageUploadDto>>() {
+        exchange = restTemplate.exchange(imageService + "/imageupload/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<ImageUploadDto>>() {
         });
         return exchange.getBody();
     }
 
     public void deleteAllByPropertyId(long id) {
-        restTemplate.delete("http://localhost:8080/adminimageupload/deletebypropertyid/" + id);
+        restTemplate.delete(imageService + "/adminimageupload/deletebypropertyid/" + id);
 
     }
 }

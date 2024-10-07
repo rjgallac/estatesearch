@@ -34,13 +34,13 @@ public class AdminImageUploadController {
         UUID uuid = UUID.randomUUID();
 
         String filename = propertyId + "_large_" + uuid;
-        String filePath = "d:\\docker-nginx\\html\\" + File.separator + filename + ".jpg";
+        String filePath = "/imagestore" + File.separator + filename + ".jpg";
         log.info("image upload for propertyId {}", propertyId);
 
         String fileUploadStatus;
 
         String thumbFilename = propertyId + "_thumb_" + uuid;
-        String filePathThumb = "d:\\docker-nginx\\html\\" + File.separator + thumbFilename + ".jpg";
+        String filePathThumb = "/imagestore" + File.separator + thumbFilename + ".jpg";
 
         try {
             ByteArrayOutputStream thumbnail = createThumbnail(file, 200);
@@ -97,14 +97,14 @@ public class AdminImageUploadController {
         Optional<ImageUpload> byId = imageRepository.findById(id);
         if(byId.isPresent()) {
             ImageUpload imageUpload = byId.get();
-            File myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageSmallFilename() + ".jpg");
+            File myObj = new File("/imagestore" + imageUpload.getImageSmallFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
                 System.out.println("Failed to delete the file.");
             }
 
-            myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageLargeFilename() + ".jpg");
+            myObj = new File("/imagestore" + imageUpload.getImageLargeFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
@@ -120,14 +120,14 @@ public class AdminImageUploadController {
     public void delete(@PathVariable("id") long id) {
         List<ImageUpload> byPropertyId = imageRepository.findByPropertyId(id);
         for (ImageUpload imageUpload : byPropertyId) {
-            File myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageSmallFilename() + ".jpg");
+            File myObj = new File("/imagestore" + imageUpload.getImageSmallFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
                 System.out.println("Failed to delete the file.");
             }
 
-            myObj = new File("d:\\docker-nginx\\html\\" + imageUpload.getImageLargeFilename() + ".jpg");
+            myObj = new File("/imagestore" + imageUpload.getImageLargeFilename() + ".jpg");
             if (myObj.delete()) {
                 System.out.println("Deleted the file: " + myObj.getName());
             } else {
