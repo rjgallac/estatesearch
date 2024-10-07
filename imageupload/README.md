@@ -5,3 +5,5 @@ mariadb -u root -p
 use imagedb;
 show tables;
 select * from image_upload;
+
+docker build -t rjgallac/imageupload .

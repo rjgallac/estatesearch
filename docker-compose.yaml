@@ -52,3 +52,16 @@ services:
     ports:
       - "8082:8082"
     restart: always
+
+  estateimage:
+    image: rjgallac/imageupload:latest
+    ports:
+      - "8084:8084"
+    restart: always
+
+  estateimagedb:
+    image: mariadb:latest
+    environment:
+      MARIADB_DATABASE: imagedb
+      MARIADB_ROOT_PASSWORD: my-secret-pw
+      MYSQL_ROOT_HOST: "%"
