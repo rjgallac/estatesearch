@@ -10,7 +10,7 @@ spring:
         corsConfigurations:
           '[/**]':
             allowCredentials: true
-            allowedOrigins: "http://localhost:4200,http://localhost:4300"
+            allowedOrigins: "http://localhost:4200,http://localhost:4300,http://estatesearch"
             allowedMethods: "*"
             allowedHeaders: "*"
       routes:

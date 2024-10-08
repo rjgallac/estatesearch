@@ -3,7 +3,7 @@ address: {{property.address}} <br />
 price: {{property.price}} <br />
 
 <div *ngFor="let image of property.images">
-    <img src="http://localhost:81/{{image.imageSmallFilename}}.jpg" />
+    <img src="http://localhost/images/{{image.imageSmallFilename}}.jpg" />
     <button mat-raised-button  color="primary" (click)="deleteImage(image.id)">Delete Image</button>
 
 </div>

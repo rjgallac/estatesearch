@@ -51,3 +51,5 @@ add user - note , need to add names and email or you'll get 400 - account not fu
 dont forget to add web origins - "*"  or "http://localhost:4200" for testing purposes.
 
 http://localhost:8181/
+
+docker build -t rjgallac/estatenginx .
